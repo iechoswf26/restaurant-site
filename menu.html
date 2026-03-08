@@ -5,158 +5,170 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>restaurant-site</title>
 
+    <script src="https://kit.fontawesome.com/9d89612a56.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 
 </head>
+
 <body>
-<h1>Four Elements Udon</h1>
-<p>"Happiness is a bowl of udon shared in peace."</p>
 
-<div class="container">
-    <img src="images/Four_Elements_Udon_Logo.png" alt="Four Elements Udon Logo" style ="width: 250px; height: 200px">
-</div>
+<header class="top-nav">
+    <div class ="logo">
+        <img src="images/Logo_Air_Element.png" alt="Four Elements Udon Logo">
+    </div>
 
-<h2>Menu</h2>
-<a href="index.html">Home</a>
-<a href="menu.html">Menu</a>
-<a href="reservations.html">Reservations</a>
+    <nav>
+        <a href="index.html">
+            <i class="fa-regular fa-house" style="font-size:24px;"></i> Home
+        </a>
+        <a href="menu.html">
+            <i class="fa-solid fa-book-open" style="font-size:24px;"></i> Menu
+        </a>
+        <a href="reservations.html">
+            <i class="fa-regular fa-calendar" style="font-size:24px;"></i> Reservations
+        </a>
+    </nav>
 
-<div class ="top-nav">
-    <a class="index.html" href="#home">Home</a>
-    <a href="#menu">Menu</a>
-    <a href=""></a>
+</header>
 
-</div>
+<section class="page">
 
-<p>Step into Four Elements Udon, where every bowl bends flavor like a true master of the elements! Start your journey with Fire Nation Gyoza and perfectly salted Air Nomad Edamame Pods before choosing your destiny: Avatar’s Tonkotsu, light as the wind yet rich as the journey; Zuko’s Fiery Shoyu, bold, smoky, and carrying just a spark of heat; Toph’s Earthy Miso, robust and grounding with unstoppable strength; or the refreshing Water Tribe Vegan, smooth, soothing, and full of life. Each steaming bowl is crafted with balance, power, and heart — just like the legends who inspired them. Pair your feast with tea, boba, or a cool drink of water, and prepare to taste harmony in every slurp.</p>
+    <h1 class="title">Our Menu</h1>
+    <p class="menu-summary">Step into Four Elements Udon, where every bowl bends flavor like a true master of the elements! Start your journey with Fire Nation Gyoza and perfectly salted Air Nomad Edamame Pods before choosing your destiny: Avatar’s Tonkotsu, light as the wind yet rich as the journey; Zuko’s Fiery Shoyu, bold, smoky, and carrying just a spark of heat; Toph’s Earthy Miso, robust and grounding with unstoppable strength; or the refreshing Water Tribe Vegan, smooth, soothing, and full of life. Each steaming bowl is crafted with balance, power, and heart — just like the legends who inspired them. Pair your feast with tea, boba, or a cool drink of water, and prepare to taste harmony in every slurp.</p>
 
-<table border =5>
-    <caption>Appetizer</caption>
-    <thead>
-    <tr>
-        <td> </td>
-        <td>Elements</td>
-        <td>Price</td>
-    </tr>
-    </thead>
+    <table>
+        <caption class="food-caption">Appetizer</caption>
+        <thead class="menu-headers">
+        <tr>
+            <td> </td>
+            <td>Elements</td>
+            <td>Price</td>
+        </tr>
+        </thead>
 
-    <tbody>
-    <tr>
-        <td>Fire Nation Gyoza</td>
-        <td>Spicy, bold, and full of flavor—perfect nod to the Fire Nation’s fiery cuisine.</td>
-        <td>$5.99</td>
-    </tr>
+        <tbody class="food-data">
+        <tr>
+            <td>Fire Nation Gyoza</td>
+            <td>Spicy, bold, and full of flavor—perfect nod to the Fire Nation’s fiery cuisine.</td>
+            <td>$5.99</td>
+        </tr>
 
-    <tr>
-        <td>Air Nomad Edamame Pods</td>
-        <td>Light, healthy, and simple—evoking the airy, peaceful lifestyle of the Air Nomads.</td>
-        <td>$3.99</td>
-    </tr>
+        <tr>
+            <td>Air Nomad Edamame Pods</td>
+            <td>Light, healthy, and simple—evoking the airy, peaceful lifestyle of the Air Nomads.</td>
+            <td>$3.99</td>
+        </tr>
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
+    <table>
+        <caption class="food-caption">Udon</caption>
+        <thead class="menu-headers">
+        <tr>
+            <td>Bowls</td>
+            <td>Elements</td>
+            <td>Price</td>
+        </tr>
+        </thead>
 
-<table border =5>
-    <caption>Udon</caption>
-    <thead>
-    <tr>
-        <td>Bowls</td>
-        <td>Elements</td>
-        <td>Price</td>
-    </tr>
-    </thead>
+        <tbody class="food-data">
+        <tr>
+            <td>Avatar's Tonkotsu</td>
+            <td>Pork Bone Broth, Chashu Pork, Ajitama Egg, Kikurage, Scallions, Sesame Seeds</td>
+            <td>$16.99</td>
+        </tr>
 
-    <tbody>
-    <tr>
-        <td>Avatar's Tonkotsu</td>
-        <td>Pork Bone Broth, Chashu Pork, Ajitama Egg, Kikurage, Scallions, Sesame Seeds</td>
-        <td>$16.99</td>
-    </tr>
+        <tr>
+            <td>Zuko's Fiery Shoyu</td>
+            <td>Pork Bone Broth, Soy Sauce Blend, Chashu Pork, Ajitama Egg, Menma, Scallions, Nori, Pepper</td>
+            <td>$19.99</td>
+        </tr>
 
-    <tr>
-        <td>Zuko's Fiery Shoyu</td>
-        <td>Pork Bone Broth, Soy Sauce Blend, Chashu Pork, Ajitama Egg, Menma, Scallions, Nori, Pepper</td>
-        <td>$19.99</td>
-    </tr>
+        <tr>
+            <td>Toph's Earthy Miso</td>
+            <td>Pork Bone Broth, Miso Blend, Goma Pork, Ajitama Egg, Scallions, Napa Cabbage, Bean Sprout, Corn, Sesame Seeds</td>
+            <td>$15.99</td>
+        </tr>
 
-    <tr>
-        <td>Toph's Earthy Miso</td>
-        <td>Pork Bone Broth, Miso Blend, Goma Pork, Ajitama Egg, Scallions, Napa Cabbage, Bean Sprout, Corn, Sesame Seeds</td>
-        <td>$15.99</td>
-    </tr>
+        <tr>
+            <td>Water Tribe Vegan</td>
+            <td>Almond Milk Tonkotsu, Shroom Abura, Spinach, Assuage Tofu, Scallions, Corn, Kikurage</td>
+            <td>$12.99</td>
+        </tr>
 
-    <tr>
-        <td>Water Tribe Vegan</td>
-        <td>Almond Milk Tonkotsu, Shroom Abura, Spinach, Assuage Tofu, Scallions, Corn, Kikurage</td>
-        <td>$12.99</td>
-    </tr>
+        </tbody>
+    </table>
 
-    </tbody>
-</table>
+    <table>
+        <caption class="food-caption">Drinks</caption>
+        <thead class="menu-headers">
+        <tr>
+            <td> </td>
+            <td>Elements</td>
+            <td>Price</td>
+        </tr>
+        </thead>
 
+        <tbody class="food-data">
+        <tr>
+            <td>Water</td>
+            <td> </td>
+            <td>$1.00</td>
+        </tr>
 
-<table border =5>
-    <caption>Appetizer</caption>
-    <thead>
-    <tr>
-        <td> </td>
-        <td>Elements</td>
-        <td>Price</td>
-    </tr>
-    </thead>
+        <tr>
+            <td>Jasmine Air Temple Tea</td>
+            <td>Light, floral, and calming - brewed for peaceful balance.</td>
+            <td>$3.99</td>
+        </tr>
 
-    <tbody>
-    <tr>
-        <td>Water</td>
-        <td> </td>
-        <td>$1.00</td>
-    </tr>
+        <tr>
+            <td>White Lotus Brew</td>
+            <td>A smooth, wise blend steeped to quiet the mind and strengthen the spirit.</td>
+            <td>$4.99</td>
+        </tr>
 
-    <tr>
-        <td>Jasmine Air Temple Tea</td>
-        <td>Light, floral, and calming - brewed for peaceful balance.</td>
-        <td>$3.99</td>
-    </tr>
+        <tr>
+            <td>Fire Nation Fizz</td>
+            <td>Bright, bold, and sparkling with unstoppable energy.</td>
+            <td>$2.99</td>
+        </tr>
 
-    <tr>
-        <td>White Lotus Brew</td>
-        <td>A smooth, wise blend steeped to quiet the mind and strengthen the spirit.</td>
-        <td>$4.99</td>
-    </tr>
+        <tr>
+            <td>Lightning Bolt Lemonade</td>
+            <td>Sweet with a sharp citrus kick — fast, powerful, refreshing.</td>
+            <td>$2.99</td>
+        </tr>
 
-    <tr>
-        <td>Fire Nation Fizz</td>
-        <td>Bright, bold, and sparkling with unstoppable energy.</td>
-        <td>$2.99</td>
-    </tr>
+        <tr>
+            <td>Water Tribe Milk Tea</td>
+            <td>Classic milk tea with tapioca pearls — smooth, flowing, and comforting.</td>
+            <td>$4.99</td>
+        </tr>
 
-    <tr>
-        <td>Lightning Bolt Lemonade</td>
-        <td>Sweet with a sharp citrus kick — fast, powerful, refreshing.</td>
-        <td>$2.99</td>
-    </tr>
+        <tr>
+            <td>Ember Mango Boba</td>
+            <td>Mango milk tea with golden pearls — sweet heat with a fiery finish.</td>
+            <td>$3.99</td>
+        </tr>
 
-    <tr>
-        <td>Water Tribe Milk Tea</td>
-        <td>Classic milk tea with tapioca pearls — smooth, flowing, and comforting.</td>
-        <td>$4.99</td>
-    </tr>
+        <tr>
+            <td>Earth Kingdom Matcha Boba</td>
+            <td>Rich matcha with brown sugar pearls — grounded, creamy, and strong.</td>
+            <td>$5.99</td>
+        </tr>
+        </tbody>
+    </table>
 
-    <tr>
-        <td>Ember Mango Boba</td>
-        <td>Mango milk tea with golden pearls — sweet heat with a fiery finish.</td>
-        <td>$3.99</td>
-    </tr>
+    <img src="images/img3.jpg" class="menu-elemental-bowls" alt="elemental bowls for menu background">
 
-    <tr>
-        <td>Earth Kingdom Matcha Boba</td>
-        <td>Rich matcha with brown sugar pearls — grounded, creamy, and strong.</td>
-        <td>$5.99</td>
-    </tr>
-    </tbody>
-</table>
-
+</section>
 </body>
 </html>
 

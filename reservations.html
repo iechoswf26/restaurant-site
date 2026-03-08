@@ -5,82 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>restaurant-site</title>
 
+    <script src="https://kit.fontawesome.com/9d89612a56.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 
 </head>
 <body>
-<h1>Four Elements Udon</h1>
-<p>"Happiness is a bowl of udon shared in peace."</p>
+<header class="top-nav">
+    <div class ="logo">
+        <img src="images/Logo_Air_Element.png" alt="Four Elements Udon Logo">
+    </div>
 
-<div class="container">
-    <img src="images/Four_Elements_Udon_Logo.png" alt="Four Elements Udon Logo" style ="width: 250px; height: 200px">
+    <nav>
+        <a href="index.html">
+            <i class="fa-regular fa-house" style="font-size:24px;"></i> Home
+        </a>
+        <a href="menu.html">
+            <i class="fa-solid fa-book-open" style="font-size:24px;"></i> Menu
+        </a>
+        <a href="reservations.html">
+            <i class="fa-regular fa-calendar" style="font-size:24px;"></i> Reservations
+        </a>
+    </nav>
+
+</header>
+
+<h1 class="title">Reservations</h1>
+
+<div>
+    <p1 class="reservation-request">Reservations are "request only."</p1>
 </div>
 
-<h2>Reservations</h2>
-<a href="index.html">Home</a>
-<a href="menu.html">Menu</a>
-<a href="reservations.html">Reservations</a>
+<br>
 
-<form action="" method="get">
-    <label> First Name:
-        <input type="text" name="first_name" maxlength="20" required>
-    </label>
+<form action="" method="post" class="reservation-form">
+    <fieldset>
+        <legend>Patron Information</legend>
 
-    <label> Last Name:
-        <input type="text" name="last_name" required>
-    </label>
+        <label> First Name:
+            <input type="text" name="first_name" maxlength="20" required>
+        </label>
 
-    <br>
+        <br>
 
-    <label> Email:
-        <input type="email" name="" id="" required>
-    </label>
+        <label> Last Name:
+            <input type="text" name="last_name" maxlength="20" required>
+        </label>
 
-    <br>
+        <br>
 
-    <label> Party Size:
-        <input type="number" name="party_size" min="1" max="8">
-    </label>
+        <label> Email:
+            <input type="email" name="" id="" placeholder="example@example.com" required>
+        </label>
 
-    <br>
+        <br>
 
-    <label> Date:
-        <input type="date" name="date" required>
-    </label>
+        <label> Party Size:
+            <input type="number" name="party_size" min="1" max="8">
+        </label>
 
-    <br>
+        <br>
 
-    <label> Time:
-        <input type="time" name="time" required>
-    </label>
+        <label> Date:
+            <input type="date" name="date" required>
+        </label>
 
-    <br>
+        <br>
 
-    <label> Seating Preference:
-        <input type="radio" name="seat_pref" value="indoors" checked> Indoors
-        <input type="radio" name="seat_pref" value="outdoors"> Outdoors
-        <input type="radio" name="seat_pref" value="booth"> Booth
-    </label>
+        <label> Time:
+            <input type="time" name="time" required>
+        </label>
 
-    <br>
+        <br>
 
-    <label> Dietary Notes:
-        <input type="text" name="diet_notes" max="30">
-    </label>
+        <label> Seating Preference:
+            <input type="radio" name="seat_pref" value="indoors" checked> Indoors
+            <input type="radio" name="seat_pref" value="outdoors"> Outdoors
+            <input type="radio" name="seat_pref" value="bar"> Bar
+        </label>
 
-    <br>
+        <br>
 
-    <label> Join our newsletter!
-        <input type="checkbox" name="newsletter" value="yes"> Sure!
-        <input type="checkbox" name="newsletter" value="no"> No thanks.
-    </label>
+        <label> Dietary Notes:
+            <input type="text" name="diet_notes" placeholder="Optional" max="30">
+        </label>
 
-    <br>
+        <br>
 
-    <button type="submit">Submit</button>
-    <button type="reset">Reset</button>
+        <label> Join our newsletter!
+            <input type="checkbox" name="newsletter" value="yes"> Sure!
+            <input type="checkbox" name="newsletter" value="no"> No, thanks.
+        </label>
+
+        <br>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </fieldset>
 
 </form>
+
+
+<div class="owner-card">
+    <h2>Restaurant Owner</h2>
+    <img src="images/img2.png" alt="bulldog restaurant owner" style="width:100%">
+    <div class="container">
+        <h4><b>Chef Pau</b></h4>
+        <p>"Master the elements, one bowl at a time."</p>
+        <button>About Me</button>
+    </div>
+</div>
+
+<br>
 
 </body>
 </html>
