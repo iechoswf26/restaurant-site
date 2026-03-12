@@ -17,11 +17,6 @@ body, html {
     background-color: var(--light-section-bg-noodle-cream);
 }
 
-.navbar-brand img {
-    height: 100px;
-    display: block;
-}
-
 .top-nav {
     display: flex;
     align-items: center;
