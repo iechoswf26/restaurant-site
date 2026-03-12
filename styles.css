@@ -17,6 +17,10 @@ body, html {
     background-color: var(--light-section-bg-noodle-cream);
 }
 
+.navbar-custom {
+    font-family: "Cinzel Decorative", serif;
+}
+
 .top-nav {
     display: flex;
     align-items: center;
@@ -61,6 +65,7 @@ body, html {
     top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: "Cinzel Decorative", serif;
 }
 
 .hero-text h1 {
