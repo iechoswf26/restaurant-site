@@ -17,7 +17,7 @@ body, html {
     background-color: var(--light-section-bg-noodle-cream);
 }
 
-.logo img {
+.navbar-brand img {
     height: 100px;
     display: block;
 }
