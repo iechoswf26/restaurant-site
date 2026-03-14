@@ -6,176 +6,163 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /* Concept for Creating Table in JavaScript:
-1. Select table body.
-2. Create an array of menu items.
-3. Loop through items.
-4. Create a <tr> for each item.
-5. Insert the data into the table.
+- Select table body.
+- Create an array of menu items.
+- Loop through items.
+- Create a <tr> for each item.
+- Insert the data into the table.
  */
 
-// Concept Step 1: Select table body from HTML.
+// Select table body from HTML.
 let menuTable = document.querySelector("tbody")
 
-// Concept Step 2: Create array of all menu items.
+// Display prices in Intl.NumberFormat().
+const money = new Intl.NumberFormat("en-US", {
+    style: "currency", currency: "USD"
+});
 
+// Create array of all menu items.
 const MENU_ITEMS = [
-
     {
     id: 1,
     name: "Fire Nation Gyoza",
     element:"Spicy, bold, and full of flavor—perfect nod to the Fire Nation’s fiery cuisine.",
-    price:5.99,
-    category: "Dinner"
+    price: money.format(5.99),
+    category: "Appetizer"
     },
 
     {
     id: 2,
     name: "Air Nomad Edamame Pods",
     element:"Light, healthy, and simple—evoking the airy, peaceful lifestyle of the Air Nomads.",
-    price: 3.99,
-    category: "Dinner"
-
+    price: money.format(3.99),
+    category: "Appetizer"
     },
 
     {
     id: 3,
     name: "Avatar's Tonkotsu",
     element:"Pork Bone Broth, Chashu Pork, Ajitama Egg, Kikurage, Scallions, Sesame Seeds.",
-    price: 16.99,
+    price: money.format(16.99),
     category: "Dinner"
-
     },
 
     {
     id: 4,
     name: "Zuko's Fiery Shoyu",
     element:"Pork Bone Broth, Soy Sauce Blend, Chashu Pork, Ajitama Egg, Menma, Scallions, Nori, Pepper.",
-    price: 19.99,
+    price: money.format(19.99),
     category: "Dinner"
-
     },
 
     {
     id: 5,
     name: "Toph's Earthy Miso",
     element:"Pork Bone Broth, Miso Blend, Goma Pork, Ajitama Egg, Scallions, Napa Cabbage, Bean Sprout, Corn, Sesame Seeds.",
-    price: 16.99,
+    price: money.format(16.99),
     category: "Lunch"
-
     },
 
     {
     id: 6,
     name: "Water Tribe Vegan",
     element:"Almond Milk Tonkotsu, Shroom Abura, Spinach, Assuage Tofu, Scallions, Corn, Kikurage.",
-    price: 12.99,
+    price: money.format(12.99),
     category: "Lunch"
-
     },
 
     {
     id: 7,
     name: "Water",
     element:"Pure water restores balance, refreshing body and spirit.",
-    price: 1.00,
+    price: money.format(1.00),
     category: "Lunch"
-
     },
 
     {
     id: 8,
     name: "Jasmine Air Temple Tea",
     element:"Light, floral, and calming - brewed for peaceful balance.",
-    price: 3.99,
+    price: money.format(3.99),
     category: "Lunch"
-
     },
 
     {
     id: 9,
     name: "White Lotus Brew",
     element:"A smooth, wise blend steeped to quiet the mind and strengthen the spirit.",
-    price: 4.99,
+    price: money.format(4.99),
     category: "Lunch"
-
     },
 
     {
     id: 10,
     name: "Fire Nation Fizz",
     element:"Bright, bold, and sparkling with unstoppable energy.",
-    price: 2.99,
+    price: money.format(2.99),
     category: "Lunch"
-
     },
 
     {
     id: 11,
     name: "Lightning Bolt Lemonade",
     element:"Sweet with a sharp citrus kick — fast, powerful, refreshing.",
-    price: 2.99,
+    price: money.format(2.99),
     category: "Dinner"
-
     },
 
     {
     id: 12,
     name: "Water Tribe Milk Tea",
     element:"Classic milk tea with tapioca pearls — smooth, flowing, and comforting.",
-    price: 4.99,
+    price: money.format(4.99),
     category: "Dinner"
-
     },
 
     {
     id: 13,
     name: "Ember Mango Boba",
     element:"Mango milk tea with golden pearls — sweet heat with a fiery finish.",
-    price: 3.99,
+    price: money.format(3.99),
     category: "Dinner"
-
     },
 
     {
     id: 14,
     name: "Earth Kingdom Matcha Boba",
     element:"Rich matcha with brown sugar pearls — grounded, creamy, and strong.",
-    price: 5.99,
+    price: money.format(5.99),
     category: "Dinner"
-
     }];
 
-//Concept Step 3: Declare a variable that will store the array, menuItems.
-let arrayMenuItems = [menuItems];
-
-//Concept Step 4a: Each item in the array will be stored under name, element, price, and category. At this point, this is just a "blueprint" for how the row should be displayed.
-arrayMenuItems.forEach(item => {
+// Each object in the array will be placed in the order that it appears in the addRow function (name, element, price, and category). At this point, this is just a "blueprint" for how the row should be displayed.
+MENU_ITEMS.forEach(item => {
     addRow(item.name, item.element, item.price, item.category)
 })
 
-//Concept Step 4b: Use a function called addRow. Pass the following parameters into the function: name, element, price, and category. Then create a new HTML element that represents the table row.
+// Use a function called addRow. Pass the following parameters into the function: name, element, price, and category. Then create a new HTML element that represents the table row.
 function addRow(name, element, price, category) {
     let row = document.createElement("tr");
 
-// Concept Step 4c: Create the table data (cells) that will fall under name, element, price, and category. In other words, create spots for those sections in the table. At this point, no words have been added to the table yet.
+// Create the table data (cells) that will fall under name, element, price, and category. In other words, create spots for those sections in the table. At this point, no words have been added to the table yet.
     let tdName = document.createElement("td")
     let tdElement = document.createElement("td")
     let tdPrice = document.createElement("td")
     let tdCategory = document.createElement("td")
 
-// Concept Step 4d: Insert text into the corresponding section - name, element, price, and category.
+// Insert text into the corresponding sections - name, element, price, and category.
     tdName.textContent = name
     tdElement.textContent = element
     tdPrice.textContent = price
     tdCategory.textContent = category
 
-// Concept Step 4e: Add the text to the row that was created.
+// Add the text to the row that was created.
     row.appendChild(tdName)
     row.appendChild(tdElement)
     row.appendChild(tdPrice)
     row.appendChild(tdCategory)
 
-//Concept Step 4f: Add the row to the table.
+// Add the row to the table.
     menuTable.appendChild(row);
 }
 

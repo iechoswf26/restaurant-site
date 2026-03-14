@@ -5,22 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>restaurant-site</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="styles.css">
+
     <script src="https://kit.fontawesome.com/9d89612a56.js" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
 </head>
 
 <body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
 
 <!--Start Navigation Bar-->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -28,9 +25,12 @@
         <a class="navbar-brand" href="index.html">
             <img src="images/Logo_Air_Element.png" alt="Four Elements Udon Logo" height="100" width="150" class="d-inline-block align-text-top">
         </a>
+
+        <!--        Start Hamburger Button-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <!--        End Hamburger Button-->
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -41,18 +41,13 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="menu.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Menu
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="menu.html">Appetizers</a></li>
-                        <li><a class="dropdown-item" href="menu.html">Udon</a></li>
-                        <li><a class="dropdown-item" href="menu.html">Drinks</a></li>
-                    </ul>
-                </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="reservations.html">Reservations</a>
+                    <a class="nav-link active" aria-current="page" href="menu.html">Menu</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="reservations.html">Reservations</a>
                 </li>
 
             </ul>
@@ -61,149 +56,46 @@
 </nav>
 <!--End Navigation Bar-->
 
-<section class="page">
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <h1 class="menu-title">
+                Our Menu
+            </h1>
+        </div>
+    </div>
 
-    <h1 class="title">Our Menu</h1>
-    <p class="menu-summary">Step into Four Elements Udon, where every bowl bends flavor like a true master of the elements! Start your journey with Fire Nation Gyoza and perfectly salted Air Nomad Edamame Pods before choosing your destiny: Avatar’s Tonkotsu, light as the wind yet rich as the journey; Zuko’s Fiery Shoyu, bold, smoky, and carrying just a spark of heat; Toph’s Earthy Miso, robust and grounding with unstoppable strength; or the refreshing Water Tribe Vegan, smooth, soothing, and full of life. Each steaming bowl is crafted with balance, power, and heart — just like the legends who inspired them. Pair your feast with tea, boba, or a cool drink of water, and prepare to taste harmony in every slurp.</p>
+    <div class="row">
+        <div class="col">
+            <p class="menu-summary">
+                Step into Four Elements Udon, where every bowl bends flavor like a true master of the elements! Start your journey with Fire Nation Gyoza and perfectly salted Air Nomad Edamame Pods before choosing your destiny: Avatar’s Tonkotsu, light as the wind yet rich as the journey; Zuko’s Fiery Shoyu, bold, smoky, and carrying just a spark of heat; Toph’s Earthy Miso, robust and grounding with unstoppable strength; or the refreshing Water Tribe Vegan, smooth, soothing, and full of life. Each steaming bowl is crafted with balance, power, and heart — just like the legends who inspired them. Pair your feast with tea, boba, or a cool drink of water, and prepare to taste harmony in every slurp.
+            </p>
+        </div>
+    </div>
 
-<!--    This table will be referenced script.js-->
-    <table>
-        <caption></caption>
-        <thead></thead>
-        <tbody class="example"></tbody>
-    </table>
-
-    <table>
-        <caption class="food-caption">Appetizer</caption>
-        <thead class="menu-headers">
-        <tr>
-            <td> </td>
-            <td>Elements</td>
-            <td>Price</td>
-        </tr>
-        </thead>
-
-        <tbody class="food-data">
-        <tr>
-            <td>Fire Nation Gyoza</td>
-            <td>Spicy, bold, and full of flavor—perfect nod to the Fire Nation’s fiery cuisine.</td>
-            <td>$5.99</td>
-        </tr>
-
-        <tr>
-            <td>Air Nomad Edamame Pods</td>
-            <td>Light, healthy, and simple—evoking the airy, peaceful lifestyle of the Air Nomads.</td>
-            <td>$3.99</td>
-        </tr>
-
-        </tbody>
-    </table>
-
-    <table>
-        <caption class="food-caption">Udon</caption>
-        <thead class="menu-headers">
-        <tr>
-            <td>Bowls</td>
-            <td>Elements</td>
-            <td>Price</td>
-        </tr>
-        </thead>
-
-        <tbody class="food-data">
-        <tr>
-            <td>Avatar's Tonkotsu</td>
-            <td>Pork Bone Broth, Chashu Pork, Ajitama Egg, Kikurage, Scallions, Sesame Seeds</td>
-            <td>$16.99</td>
-        </tr>
-
-        <tr>
-            <td>Zuko's Fiery Shoyu</td>
-            <td>Pork Bone Broth, Soy Sauce Blend, Chashu Pork, Ajitama Egg, Menma, Scallions, Nori, Pepper</td>
-            <td>$19.99</td>
-        </tr>
-
-        <tr>
-            <td>Toph's Earthy Miso</td>
-            <td>Pork Bone Broth, Miso Blend, Goma Pork, Ajitama Egg, Scallions, Napa Cabbage, Bean Sprout, Corn, Sesame Seeds</td>
-            <td>$15.99</td>
-        </tr>
-
-        <tr>
-            <td>Water Tribe Vegan</td>
-            <td>Almond Milk Tonkotsu, Shroom Abura, Spinach, Assuage Tofu, Scallions, Corn, Kikurage</td>
-            <td>$12.99</td>
-        </tr>
-
-        </tbody>
-    </table>
-
-    <table>
-        <caption class="food-caption">Drinks</caption>
-        <thead class="menu-headers">
-        <tr>
-            <td> </td>
-            <td>Elements</td>
-            <td>Price</td>
-        </tr>
-        </thead>
-
-        <tbody class="food-data">
-        <tr>
-            <td>Water</td>
-            <td> </td>
-            <td>$1.00</td>
-        </tr>
-
-        <tr>
-            <td>Jasmine Air Temple Tea</td>
-            <td>Light, floral, and calming - brewed for peaceful balance.</td>
-            <td>$3.99</td>
-        </tr>
-
-        <tr>
-            <td>White Lotus Brew</td>
-            <td>A smooth, wise blend steeped to quiet the mind and strengthen the spirit.</td>
-            <td>$4.99</td>
-        </tr>
-
-        <tr>
-            <td>Fire Nation Fizz</td>
-            <td>Bright, bold, and sparkling with unstoppable energy.</td>
-            <td>$2.99</td>
-        </tr>
-
-        <tr>
-            <td>Lightning Bolt Lemonade</td>
-            <td>Sweet with a sharp citrus kick — fast, powerful, refreshing.</td>
-            <td>$2.99</td>
-        </tr>
-
-        <tr>
-            <td>Water Tribe Milk Tea</td>
-            <td>Classic milk tea with tapioca pearls — smooth, flowing, and comforting.</td>
-            <td>$4.99</td>
-        </tr>
-
-        <tr>
-            <td>Ember Mango Boba</td>
-            <td>Mango milk tea with golden pearls — sweet heat with a fiery finish.</td>
-            <td>$3.99</td>
-        </tr>
-
-        <tr>
-            <td>Earth Kingdom Matcha Boba</td>
-            <td>Rich matcha with brown sugar pearls — grounded, creamy, and strong.</td>
-            <td>$5.99</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col">
+            <table class="table table-borderless, table table-hover">
+                <thead class="menu-headers">
+                    <tr>
+                        <th>Name</th>
+                        <th>Element</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody class="food-data"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
     <img src="images/Elemental_Bowls.png" class="menu-elemental-bowls" alt="elemental bowls for menu background">
 
-</section>
-
+<!--JavaScript-->
 <script src="script.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
 </html>
-
