@@ -4,11 +4,25 @@
 */
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Each object in the array will be placed in the order that it appears in the addRow function (name, element, price, and category). At this point, this is just a "blueprint" for how the row should be displayed.
-    MENU_ITEMS.forEach(item => {
-        addRow(item.name, item.element, item.price, item.category)
-    });
+    if(document.title === "menu") {
+        // Each object in the array will be placed in the order that it appears in the addRow function (name, element, price, and category). At this point, this is just a "blueprint" for how the row should be displayed.
+        MENU_ITEMS.forEach(item => {
+            addRow(item.name, item.element, item.price, item.category)
+        });
+    }
 });
+
+const form = document.forms["customerReservation"];
+
+document.addEventListener("DOMContentLoaded", function() {
+    if(document.title === "reservations") {
+
+        document.getElementById("customerReservation").addEventListener("submit", function(event) {
+            event.preventDefault();
+            validateForm();
+        })
+    }
+})
 
 // Select table body from HTML.
 let menuTable = document.querySelector("tbody")
@@ -159,12 +173,6 @@ const MENU_ITEMS = [
     }];
 
 // RESERVATIONS PAGE
-const form = document.forms["customerReservation"];
-
-document.getElementById("customerReservation").addEventListener("submit", function(event) {
-    event.preventDefault();
-    validateForm();
-})
 
 const alertPlaceholder = document.getElementById('alertPlaceholder')
 const appendAlert = (message, type) => {
@@ -176,7 +184,6 @@ const appendAlert = (message, type) => {
         '</div>'
     ].join('')
 
-    alertPlaceholder.innerHTML = ''
     alertPlaceholder.append(wrapper)
 }
 
