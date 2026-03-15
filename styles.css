@@ -41,6 +41,14 @@ body, html {
     color: var(--fire-accent);
 }
 
+.navbar-toggler{
+    border-color: var(--primary-text-light);
+}
+
+.navbar-toggler-icon {
+    background-color: var(--primary-text-light);
+}
+
 .hero-image {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/img1.jpg");
     height: 100%;
@@ -83,11 +91,6 @@ body, html {
     font-size: 18px;
 }
 
-.menu-elemental-bowls {
-    position: relative; /*Positioned to the normal flow of the element.*/
-    width: 100%; /*Image covers full width of container.*/
-    height: 100%; /*Image covers full height of container.*/
-}
 .menu-headers {
     font-size: 25px;
 }
@@ -96,12 +99,17 @@ body, html {
     font-size: 18px;
 }
 
+.menu-elemental-bowls {
+    position: relative; /*Positioned to the normal flow of the element.*/
+    width: 100%; /*Image covers full width of container.*/
+    height: 100%; /*Image covers full height of container.*/
+}
+
 .reservation-request {
     text-align: left;
     margin: 0 50px 50px 50px;
     font-size: 18px;
 }
-
 
 .reservation-form {
     text-align: left;

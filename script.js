@@ -1,20 +1,43 @@
+// MENU PAGE
+
 /* addEventListener tells the browser to listen to an event. The DOMContentLoaded waits until HTML has fully loaded and the DOM tree has been built so JavaScript can safely access the elements. The function() {loadTable()} runs loadTable() when the page finishes loading. Order of ops: 1) HTML loads, 2) DOM is built, 3) JavaScript runs loadTable(), 4) loadTable() fills table with menu items.
 */
 
 document.addEventListener("DOMContentLoaded", function () {
-    menuTable()
+    // Each object in the array will be placed in the order that it appears in the addRow function (name, element, price, and category). At this point, this is just a "blueprint" for how the row should be displayed.
+    MENU_ITEMS.forEach(item => {
+        addRow(item.name, item.element, item.price, item.category)
+    });
 });
-
-/* Concept for Creating Table in JavaScript:
-- Select table body.
-- Create an array of menu items.
-- Loop through items.
-- Create a <tr> for each item.
-- Insert the data into the table.
- */
 
 // Select table body from HTML.
 let menuTable = document.querySelector("tbody")
+
+// Use a function called addRow. Pass the following parameters into the function: name, element, price, and category. Then create a new HTML element that represents the table row.
+function addRow(name, element, price, category) {
+    let row = document.createElement("tr");
+
+// Create the table data (cells) that will fall under name, element, price, and category. In other words, create spots for those sections in the table. At this point, no words have been added to the table yet.
+    let tdName = document.createElement("td")
+    let tdElement = document.createElement("td")
+    let tdPrice = document.createElement("td")
+    let tdCategory = document.createElement("td")
+
+// Insert text into the corresponding sections - name, element, price, and category.
+    tdName.textContent = name
+    tdElement.textContent = element
+    tdPrice.textContent = price
+    tdCategory.textContent = category
+
+// Add the text to the row that was created.
+    row.appendChild(tdName)
+    row.appendChild(tdElement)
+    row.appendChild(tdPrice)
+    row.appendChild(tdCategory)
+
+// Add the row to the table.
+    menuTable.appendChild(row);
+}
 
 // Display prices in Intl.NumberFormat().
 const money = new Intl.NumberFormat("en-US", {
@@ -135,48 +158,84 @@ const MENU_ITEMS = [
     category: "Dinner"
     }];
 
-// Each object in the array will be placed in the order that it appears in the addRow function (name, element, price, and category). At this point, this is just a "blueprint" for how the row should be displayed.
-MENU_ITEMS.forEach(item => {
-    addRow(item.name, item.element, item.price, item.category)
+// RESERVATIONS PAGE
+const form = document.forms["customerReservation"];
+
+document.getElementById("customerReservation").addEventListener("submit", function(event) {
+    event.preventDefault();
+    validateForm();
 })
 
-// Use a function called addRow. Pass the following parameters into the function: name, element, price, and category. Then create a new HTML element that represents the table row.
-function addRow(name, element, price, category) {
-    let row = document.createElement("tr");
+const alertPlaceholder = document.getElementById('alertPlaceholder')
+const appendAlert = (message, type) => {
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+    ].join('')
 
-// Create the table data (cells) that will fall under name, element, price, and category. In other words, create spots for those sections in the table. At this point, no words have been added to the table yet.
-    let tdName = document.createElement("td")
-    let tdElement = document.createElement("td")
-    let tdPrice = document.createElement("td")
-    let tdCategory = document.createElement("td")
-
-// Insert text into the corresponding sections - name, element, price, and category.
-    tdName.textContent = name
-    tdElement.textContent = element
-    tdPrice.textContent = price
-    tdCategory.textContent = category
-
-// Add the text to the row that was created.
-    row.appendChild(tdName)
-    row.appendChild(tdElement)
-    row.appendChild(tdPrice)
-    row.appendChild(tdCategory)
-
-// Add the row to the table.
-    menuTable.appendChild(row);
+    alertPlaceholder.innerHTML = ''
+    alertPlaceholder.append(wrapper)
 }
 
+function validateForm() {
+    appendAlert("Reservation confirmed!", "success")
 
+    document.getElementById("results").innerHTML = `
+        Reservation Confirmed: <br>
+        Name: ${first_name} ${last_name} <br>
+        Email: ${email} <br>
+        Party Size: ${party_size} <br>
+        Date: ${date} <br>
+        Time: ${time} <br>
+        Seating Preference: ${seat_pref}
+`;
 
-// function makeTable() {
-//     const tbody=document.getElementById("example")
-//     MENU_ITEMS.forEach(item => {
-//         let row = document.createElement("tr")
-//         row.innerHTML = `<td>${item.name}</td>
-//             <td>${item.element}</td>
-//             <td>${item.price}</td>`
-//         console.log(item)
-//         tbody.appendChild(row)
-//     })
-// }
+    let first_name = document.forms["customerReservation"]["first_name"].value;
+    if (!first_name) {
+        appendAlert("First name is required. Maximum characters: 20.", "danger");
+        return;
+    }
+
+    let last_name = document.forms["customerReservation"]["last_name"].value;
+    if (!last_name) {
+        appendAlert("Last name is required. Maximum characters: 20.", "danger");
+        return;
+    }
+
+    let email = document.forms["customerReservation"]["email"].value;
+    if (!email || !email.includes("@")) {
+        appendAlert("Enter a valid email.", "danger");
+        return;
+    }
+
+    let party_size = Number(document.forms["customerReservation"]["party_size"].value);
+    if (!party_size || party_size < 1 || party_size > 8) {
+        appendAlert("Party size is required. Select a number between 1 - 8.", "danger");
+        return;
+    }
+
+    let date = document.forms["customerReservation"]["date"].value;
+    if (!date) {
+        appendAlert("Date is required.", "danger");
+        return;
+    }
+
+    let time = document.forms["customerReservation"]["time"].value;
+    if (!time) {
+        appendAlert("Time is required.", "danger");
+        return;
+    }
+
+    let seat_pref = document.querySelector('input[name="seat_pref"]:checked').value;
+    if (!seat_pref) {
+        appendAlert("Seating preference is required. Select indoors, outdoors, or bar.", "danger");
+        return;
+    }
+
+}
+
+console.log("results")
 

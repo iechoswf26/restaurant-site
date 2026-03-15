@@ -56,80 +56,116 @@
 </nav>
 <!--End Navigation Bar-->
 
-<h1 class="title">Reservations</h1>
+<!--Start Reservations Form-->
+<div class="container col-md-8 col-lg-6">
+    <div class="row">
+        <div class="col">
+            Reservations
+        </div>
+    </div>
 
-<div>
-    <p1 class="reservation-request">Reservations are "request only."</p1>
+    <div class="row">
+        <div class="col">
+            Reservations are "Request Only."
+        </div>
+    </div>
+
+    <!--Alert Placement-->
+    <div id="alertPlaceholder"></div>
+    <button type="button" class="btn btn-primary" id="liveAlertBtn">Show live alert</button>
+
+<!--    Start Customer Reservation Form-->
+    <form id="customerReservation" name="customerReservation" action="" method="post" class="reservation-form mt-4">
+        <fieldset>
+            <legend>Patron Information</legend>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">First Name:</label>
+                    <input type="text" class="form-control" name="first_name">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Last Name:</label>
+                    <input type="text" class="form-control" name="last_name">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Email:</label>
+                    <input type="email" class="form-control" name="email" id="" placeholder="example@example.com">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Party Size:</label>
+                    <input type="number" name="party_size">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Date:</label>
+                    <input type="date" class="form-control" name="date">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Time:</label>
+                    <input type="time" class="form-control" name="time">
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="form-label">Seating Preference:</label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="seat_pref" value="indoors" checked> <label class="form-check-label">Indoors</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="seat_pref" value="outdoors">
+                    <label class="form-check-label">Outdoors</label>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="seat_pref" value="bar">
+                    <label class="form-check-label">Bar</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Dietary Notes:</label>
+                    <input type="text" class="form-control" name="diet_notes" placeholder="Optional">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Join our newsletter!</label>
+                    <input class="form-check-input" type="radio" name="newsletter" value="yes">Sure!
+                    <input class="form-check-input" type="radio" name="newsletter" value="no"> No, thanks.
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-light">Submit</button>
+                <button type="reset" class="btn btn-light">Reset</button>
+            </div>
+
+            <br>
+
+        </fieldset>
+    </form>
+
+    <div id="results"></div>
 </div>
 
-<br>
 
-<form action="" method="post" class="reservation-form">
-    <fieldset>
-        <legend>Patron Information</legend>
-
-        <label> First Name:
-            <input type="text" name="first_name" maxlength="20" required>
-        </label>
-
-        <br>
-
-        <label> Last Name:
-            <input type="text" name="last_name" maxlength="20" required>
-        </label>
-
-        <br>
-
-        <label> Email:
-            <input type="email" name="" id="" placeholder="example@example.com" required>
-        </label>
-
-        <br>
-
-        <label> Party Size:
-            <input type="number" name="party_size" min="1" max="8">
-        </label>
-
-        <br>
-
-        <label> Date:
-            <input type="date" name="date" required>
-        </label>
-
-        <br>
-
-        <label> Time:
-            <input type="time" name="time" required>
-        </label>
-
-        <br>
-
-        <label> Seating Preference:
-            <input type="radio" name="seat_pref" value="indoors" checked> Indoors
-            <input type="radio" name="seat_pref" value="outdoors"> Outdoors
-            <input type="radio" name="seat_pref" value="bar"> Bar
-        </label>
-
-        <br>
-
-        <label> Dietary Notes:
-            <input type="text" name="diet_notes" placeholder="Optional" max="30">
-        </label>
-
-        <br>
-
-        <label> Join our newsletter!
-            <input type="checkbox" name="newsletter" value="yes"> Sure!
-            <input type="checkbox" name="newsletter" value="no"> No, thanks.
-        </label>
-
-        <br>
-
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
-    </fieldset>
-
-</form>
 
 
 <div class="owner-card">
@@ -142,7 +178,10 @@
     </div>
 </div>
 
-<br>
+    <!--JavaScript-->
+    <script src="script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
 </html>
