@@ -175,7 +175,8 @@ const MENU_ITEMS = [
 // RESERVATIONS PAGE
 
 const alertPlaceholder = document.getElementById('alertPlaceholder')
-const appendAlert = (message, type) => {
+
+function appendAlert (message, type)  {
     const wrapper = document.createElement('div')
     wrapper.innerHTML = [
         `<div class="alert alert-${type} alert-dismissible" role="alert">`,
@@ -188,61 +189,59 @@ const appendAlert = (message, type) => {
 }
 
 function validateForm() {
-    appendAlert("Reservation confirmed!", "success")
+ let errorCount = 0
+    let first_name = document.forms["customerReservation"]["first_name"].value;
+    if (!first_name || first_name.length > 20) {
+        appendAlert("First name is required. Maximum characters: 20.", "danger");
+        errorCount++
+    }
 
-    document.getElementById("results").innerHTML = `
+    let last_name = document.forms["customerReservation"]["last_name"].value;
+    if (!last_name) {
+        appendAlert("Last name is required. Maximum characters: 20.", "danger");
+    }
+
+    let email = document.forms["customerReservation"]["email"].value;
+    if (!email || !email.includes("@")) {
+        appendAlert("Enter a valid email.", "danger");
+    }
+
+    let party_size = Number(document.forms["customerReservation"]["party_size"].value);
+    if (!party_size || party_size < 1 || party_size > 8) {
+        appendAlert("Party size is required. Select a number between 1 - 8.", "danger");
+    }
+
+    let date = document.forms["customerReservation"]["date"].value;
+    if (!date) {
+        appendAlert("Date is required.", "danger");
+    }
+
+    let time = document.forms["customerReservation"]["time"].value;
+    if (!time) {
+        appendAlert("Time is required.", "danger");
+    }
+
+    let seat_pref = document.querySelector('input[name="seat_pref"]:checked').value;
+    if (!seat_pref) {
+        appendAlert("Seating preference is required. Select indoors, outdoors, or bar.", "danger");
+    }
+
+    if(errorCount <= 0){
+        appendAlert("Reservation confirmed!", "success")
+
+        document.getElementById("results").innerHTML = `
         Reservation Confirmed: <br>
         Name: ${first_name} ${last_name} <br>
         Email: ${email} <br>
         Party Size: ${party_size} <br>
         Date: ${date} <br>
         Time: ${time} <br>
-        Seating Preference: ${seat_pref}
+        Seating Preference: ${seat_pref} <br>
+            
 `;
-
-    let first_name = document.forms["customerReservation"]["first_name"].value;
-    if (!first_name) {
-        appendAlert("First name is required. Maximum characters: 20.", "danger");
-        return;
     }
 
-    let last_name = document.forms["customerReservation"]["last_name"].value;
-    if (!last_name) {
-        appendAlert("Last name is required. Maximum characters: 20.", "danger");
-        return;
-    }
-
-    let email = document.forms["customerReservation"]["email"].value;
-    if (!email || !email.includes("@")) {
-        appendAlert("Enter a valid email.", "danger");
-        return;
-    }
-
-    let party_size = Number(document.forms["customerReservation"]["party_size"].value);
-    if (!party_size || party_size < 1 || party_size > 8) {
-        appendAlert("Party size is required. Select a number between 1 - 8.", "danger");
-        return;
-    }
-
-    let date = document.forms["customerReservation"]["date"].value;
-    if (!date) {
-        appendAlert("Date is required.", "danger");
-        return;
-    }
-
-    let time = document.forms["customerReservation"]["time"].value;
-    if (!time) {
-        appendAlert("Time is required.", "danger");
-        return;
-    }
-
-    let seat_pref = document.querySelector('input[name="seat_pref"]:checked').value;
-    if (!seat_pref) {
-        appendAlert("Seating preference is required. Select indoors, outdoors, or bar.", "danger");
-        return;
-    }
 
 }
 
-console.log("results")
 
