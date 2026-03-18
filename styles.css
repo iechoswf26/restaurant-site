@@ -19,7 +19,6 @@ body, html {
 
 .navbar, .container-fluid {
     font-family: "Cinzel Decorative", serif;
-    display: flex;
     align-items: center;
     overflow: hidden;
     background-color: var(--primary-bg-deep-night);
@@ -28,7 +27,6 @@ body, html {
 }
 
 .navbar .nav-item .nav-link {
-    float: left;
     color: var(--primary-text-light);
     text-align: left;
     padding: 1px 12px;
@@ -41,12 +39,12 @@ body, html {
     color: var(--fire-accent);
 }
 
-.navbar-toggler{
+.navbar-toggler {
     border-color: var(--primary-text-light);
 }
 
 .navbar-toggler-icon {
-    background-color: var(--primary-text-light);
+    filter: invert(1); /* makes it white */
 }
 
 .hero-image {

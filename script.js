@@ -24,6 +24,22 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })
 
+// Event Listener for Menu
+// Query dropdown-item in HTML and store it as a variable called dropdownItems.
+const dropdownItems = document.querySelectorAll(".dropdown-item")
+
+// Loop through dropdownItems using for-each loop. Whenever the user clicks an item from dropdownItems perform 3 events - 1) preventDefault, 2) retrieve a class value ("data-category") and store it as variable called selectedCategory, and 3) perform a function called filterMenuCategory.
+dropdownItems.forEach(item => {
+    item.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        const selectedCategory = this.getAttribute("data-category")
+
+        filterMenuCategory(selectedCategory)
+    })
+})
+
 // Select table body from HTML.
 let menuTable = document.querySelector("tbody")
 
@@ -171,6 +187,31 @@ const MENU_ITEMS = [
     price: money.format(5.99),
     category: "Dinner"
     }];
+
+// Filter function for MENU_ITEMs categories
+function filterMenuCategory(category) {
+
+    //Step 1A: Clear "temporary" table.
+    menuTable.innerHTML = "";
+
+    //Step 1B: Create variable called filteredItems.
+    let filteredItems;
+
+    // Step 1C: Create if...else statement that filters for the condition (e.g. category === "All") and retrieves all the data. Otherwise, filter the dropdown items that correspond to the selected category.
+    if (category === "All") {
+        filteredItems = MENU_ITEMS;
+    }else {
+        filteredItems = MENU_ITEMS.filter(item => item.category === category)
+    }
+
+    // Step 2: Rebuild the "temporary" table.
+    filteredItems.forEach(item => {
+        addRow (item.name, item.element, item.price, item.category)
+    })
+}
+
+filterMenuCategory("All")
+
 
 // RESERVATIONS PAGE
 
