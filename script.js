@@ -44,7 +44,7 @@ dropdownItems.forEach(item => {
 let menuTable = document.querySelector("tbody")
 
 // Use a function called addRow. Pass the following parameters into the function: name, element, price, and category. Then create a new HTML element that represents the table row.
-function addRow(name, element, price, category) {
+function addRow(name, element, price, category, quantity) {
     let row = document.createElement("tr");
 
 // Create the table data (cells) that will fall under name, element, price, and category. In other words, create spots for those sections in the table. At this point, no words have been added to the table yet.
