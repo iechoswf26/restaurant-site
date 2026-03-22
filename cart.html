@@ -83,8 +83,44 @@
                 </tr>
             </thead>
             <tbody id="cart-tbody"></tbody>
+            <tfoot class="cart-final-calculations">
+                <tr>
+                    <td colspan="3">Subtotal:</td>
+                    <td id="subtotal"></td>
+                </tr>
+                <tr>
+                    <td colspan="3">Tax (8%):</td>
+                    <td id="tax"></td>
+                </tr>
+                <tr>
+                    <td colspan="3">Grand Total:</td>
+                    <td id="grand-total"></td>
+                </tr>
+            </tfoot>
         </table>
 
+    </div>
+    <div class="d-flex justify-content-end mt-3 gap-2">
+        <button id="submit-order" class="btn btn-success">Submit Order</button>
+        <button id="cancel-order" class="btn btn-danger">Cancel Order</button>
+
+        <div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cancelOrderModalLabel">Cancel Order</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to cancel your order?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Keep Order</button>
+                        <button type="button" class="btn btn-primary">Yes, Cancel Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!--End Cart Table-->

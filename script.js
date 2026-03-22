@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
             select.classList.add("form-select")
 
             // Under the quantity header on menu table, add options (numbers 1 through 5) to the <select> tag.
-            for (let i = 0; i <= 5; i++) {
+            for (let i = 1; i <= 5; i++) {
                 let option = document.createElement("option")
                 option.value = i
                 option.textContent = i
@@ -229,16 +229,21 @@ document.addEventListener("DOMContentLoaded", function() {
         // Add item and quantity to cart.
 
         function addToCart(item, quantity) {
+            quantity = Number(quantity)
+            if (quantity <=0) {
+                alert("Select at least 1 item.")
+                return;
+            }
 
             const cart = JSON.parse(localStorage.getItem("cart")) || []
 
             // Check if item already exists in cart
-            let existingItem = cart.find(i => i.name === item.name)
+            let existingItem = cart.find(i => i.item.name === item.name)
 
             if (existingItem) {
-                existingItem.quantity = Number(existingItem.quantity) + Number(quantity);
+                existingItem.quantity += quantity
             } else {
-                const newItem = {...item, quantity: Number(quantity)}
+                const newItem = {item, quantity}
                 cart.push(newItem);
             }
 
@@ -248,21 +253,20 @@ document.addEventListener("DOMContentLoaded", function() {
             // Print a statement indicating which items have been added and of what quantity to cart.
             console.log(`Added ${quantity} of ${item.name} to cart`)
 
-            if (Number(quantity) <= 0) {
-                alert("Please select at least 1 item to add to cart.");
-                return;
-            }
         }
     }
 
 
 // CART PAGE
     if (document.title === "cart") {
-
-        let cartTable = document.querySelector("#cart-tbody")
         const cart = JSON.parse(localStorage.getItem("cart")) || []
+        let cartTable = document.querySelector("#cart-tbody")
 
-        function addCartRow(name, quantity, price) {
+        const money = new Intl.NumberFormat("en-US", {
+            style: "currency", currency: "USD"
+        })
+
+        function addCartRow(item, quantity) {
             let row = document.createElement("tr")
 
             let tdName = document.createElement("td")
@@ -270,16 +274,14 @@ document.addEventListener("DOMContentLoaded", function() {
             let tdPrice = document.createElement("td")
             let tdLineTotal = document.createElement("td")
 
-            tdName.textContent = name
+            tdName.textContent = item.name
             tdQuantity.textContent = quantity
+
+            // Convert price string to number.
             tdPrice.textContent = price
-            const lineTotal = quantity * price
-            tdLineTotal.textContent = money.format(lineTotal)
 
-
-            const money = new Intl.NumberFormat("en-US", {
-                style: "currency", currency: "USD"
-            })
+            // Line total = price * quantity
+            tdLineTotal.textContent = money.format(item.price * quantity)
 
             row.appendChild(tdName)
             row.appendChild(tdQuantity)
@@ -289,9 +291,43 @@ document.addEventListener("DOMContentLoaded", function() {
             cartTable.appendChild(row)
         }
 
-        cart.forEach(item => {
-            addCartRow(item.name, item.quantity, item.price)
+        let subtotal = 0;
+        cart.forEach(cartItem => {
+            addCartRow(cartItem.name, cartItem.quantity, cartItem.price)
+
+            //Convert price string to number (removes $ sign)
+            subtotal += cartItem.item.price * cartItem.quantity
         })
+
+        // Calculate Tax
+        const tax = subtotal * 0.08;
+
+        // Grand Total
+        const grandTotal = subtotal + tax;
+
+        // Update DOM
+        document.getElementById("subtotal").textContent = money.format(subtotal)
+        document.getElementById("tax").textContent = money.format(tax)
+        document.getElementById("grand-total").textContent = money.format(grandTotal)
+
+        const cancelOrderBtn = document.getElementById("cancel-order");
+        const confirmCancelBtn = document.getElementById("confirm-cancel");
+
+        // Bootstrap modal
+        const cancelModal = new bootstrap.Modal(document.getElementById("cancelOrderModal"));
+
+        // Show modal on clicking Cancel Order
+        cancelOrderBtn.addEventListener("click", () => {
+            cancelModal.show();
+        });
+
+        // Confirm cancel: clear cart and reload
+        confirmCancelBtn.addEventListener("click", () => {
+            localStorage.removeItem("cart");
+            location.reload();
+            cancelModal.hide();
+        });
+
     }
 
 // RESERVATION PAGE
@@ -326,6 +362,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let errorCount = 0
             let first_name = document.forms["customerReservation"]["first_name"].value;
             if (!first_name || first_name.length > 20) {
+                alertPlaceholder.innerHTML = "";
                 appendAlert("First name is required. Maximum characters: 20.", "danger");
                 errorCount++
             }
