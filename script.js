@@ -1,276 +1,376 @@
-// MENU PAGE
-
-/* addEventListener tells the browser to listen to an event. The DOMContentLoaded waits until HTML has fully loaded and the DOM tree has been built so JavaScript can safely access the elements. The function() {loadTable()} runs loadTable() when the page finishes loading. Order of ops: 1) HTML loads, 2) DOM is built, 3) JavaScript runs loadTable(), 4) loadTable() fills table with menu items.
-*/
-
-document.addEventListener("DOMContentLoaded", function () {
-    if(document.title === "menu") {
-        // Each object in the array will be placed in the order that it appears in the addRow function (name, element, price, and category). At this point, this is just a "blueprint" for how the row should be displayed.
-        MENU_ITEMS.forEach(item => {
-            addRow(item.name, item.element, item.price, item.category)
-        });
-    }
-});
-
-const form = document.forms["customerReservation"];
+let menuTable;
 
 document.addEventListener("DOMContentLoaded", function() {
-    if(document.title === "reservations") {
+    if (document.title === "menu") {
 
-        document.getElementById("customerReservation").addEventListener("submit", function(event) {
-            event.preventDefault();
-            validateForm();
+        // menuTable and addRow function
+        menuTable = document.querySelector("#menu-table")
+
+        function addRow(name, element, price, category) {
+
+            let row = document.createElement("tr");
+
+            let tdName = document.createElement("td")
+            let tdElement = document.createElement("td")
+            let tdPrice = document.createElement("td")
+            let tdCategory = document.createElement("td")
+            let tdQuantity = document.createElement("td")
+
+            // Since a column has not been created for tdCartButton, the tdCartButton will be added to tdQuantity.
+            let tdCartButton = document.createElement("button")
+
+            tdName.textContent = name
+            tdElement.textContent = element
+            tdPrice.textContent = price
+            tdCategory.textContent = category
+
+            // Insert cart info under tdCartButton.
+            tdCartButton.textContent = "cart"
+
+            // Add the text to the row that was created.
+            row.appendChild(tdName)
+            row.appendChild(tdElement)
+            row.appendChild(tdPrice)
+            row.appendChild(tdCategory)
+            row.appendChild(tdQuantity)
+
+            // Select is not visible yet; it does not have any options.
+            let select = document.createElement("select")
+            select.classList.add("form-select")
+
+            // Under the quantity header on menu table, add options (numbers 1 through 5) to the <select> tag.
+            for (let i = 0; i <= 5; i++) {
+                let option = document.createElement("option")
+                option.value = i
+                option.textContent = i
+                select.appendChild(option)
+            }
+            tdQuantity.appendChild(select)
+
+            // Append tdCartButton to tdQuantity.
+            tdQuantity.appendChild(tdCartButton)
+
+            // Add the row to the table.
+            menuTable.appendChild(row);
+
+            // The headers, name, element, price, and category are nested under "item."
+            let item = {name, element, price, category}
+
+
+            // Run the following function when the tdCartButton is clicked.
+            tdCartButton.addEventListener("click", function (event) {
+
+                // event.target is the actual element that was clicked. previousSibling refers to the element before the clicked element in the DOM. The .value refers to a previous input (e.g. quantity of 3).
+                // console.log(event.target.previousSibling.value)
+                //Stores the value (e.g. quantity of 30 into variable, quantityToAddToCart).
+                // let quantityToAddToCart = event.target.previousSibling.value;
+
+                let quantityToAddToCart = select.value;
+
+                // Add item to cart with selected quantity.
+                addToCart(item, quantityToAddToCart)
+            })
+        }
+
+        // Query dropdown-item in HTML and store it as a variable called dropdownItems.
+        const dropdownItems = document.querySelectorAll(".dropdown-item")
+
+        // Loop through dropdownItems. Whenever the user clicks an item from dropdownItems perform 3 events.
+        dropdownItems.forEach(dropDownItem => {
+            dropDownItem.addEventListener("click", function (event) {
+
+                event.preventDefault();
+
+                const selectedCategory = this.getAttribute("data-category")
+
+                filterMenuCategory(selectedCategory)
+            })
+        })
+
+
+        // Display prices in Intl.NumberFormat().
+        const money = new Intl.NumberFormat("en-US", {
+            style: "currency", currency: "USD"
+        });
+
+        // Create array of all menu items.
+        const MENU_ITEMS = [
+            {
+                id: 1,
+                name: "Fire Nation Gyoza",
+                element: "Spicy, bold, and full of flavor—perfect nod to the Fire Nation’s fiery cuisine.",
+                price: money.format(5.99),
+                category: "Appetizer",
+            },
+
+            {
+                id: 2,
+                name: "Air Nomad Edamame Pods",
+                element: "Light, healthy, and simple—evoking the airy, peaceful lifestyle of the Air Nomads.",
+                price: money.format(3.99),
+                category: "Appetizer",
+            },
+
+            {
+                id: 3,
+                name: "Avatar's Tonkotsu",
+                element: "Pork Bone Broth, Chashu Pork, Ajitama Egg, Kikurage, Scallions, Sesame Seeds.",
+                price: money.format(16.99),
+                category: "Dinner",
+            },
+
+            {
+                id: 4,
+                name: "Zuko's Fiery Shoyu",
+                element: "Pork Bone Broth, Soy Sauce Blend, Chashu Pork, Ajitama Egg, Menma, Scallions, Nori, Pepper.",
+                price: money.format(19.99),
+                category: "Dinner",
+            },
+
+            {
+                id: 5,
+                name: "Toph's Earthy Miso",
+                element: "Pork Bone Broth, Miso Blend, Goma Pork, Ajitama Egg, Scallions, Napa Cabbage, Bean Sprout, Corn, Sesame Seeds.",
+                price: money.format(16.99),
+                category: "Lunch",
+            },
+
+            {
+                id: 6,
+                name: "Water Tribe Vegan",
+                element: "Almond Milk Tonkotsu, Shroom Abura, Spinach, Assuage Tofu, Scallions, Corn, Kikurage.",
+                price: money.format(12.99),
+                category: "Lunch",
+            },
+
+            {
+                id: 7,
+                name: "Water",
+                element: "Pure water restores balance, refreshing body and spirit.",
+                price: money.format(1.00),
+                category: "Lunch",
+            },
+
+            {
+                id: 8,
+                name: "Jasmine Air Temple Tea",
+                element: "Light, floral, and calming - brewed for peaceful balance.",
+                price: money.format(3.99),
+                category: "Lunch",
+            },
+
+            {
+                id: 9,
+                name: "White Lotus Brew",
+                element: "A smooth, wise blend steeped to quiet the mind and strengthen the spirit.",
+                price: money.format(4.99),
+                category: "Lunch",
+            },
+
+            {
+                id: 10,
+                name: "Fire Nation Fizz",
+                element: "Bright, bold, and sparkling with unstoppable energy.",
+                price: money.format(2.99),
+                category: "Lunch",
+            },
+
+            {
+                id: 11,
+                name: "Lightning Bolt Lemonade",
+                element: "Sweet with a sharp citrus kick — fast, powerful, refreshing.",
+                price: money.format(2.99),
+                category: "Dinner",
+            },
+
+            {
+                id: 12,
+                name: "Water Tribe Milk Tea",
+                element: "Classic milk tea with tapioca pearls — smooth, flowing, and comforting.",
+                price: money.format(4.99),
+                category: "Dinner",
+            },
+
+            {
+                id: 13,
+                name: "Ember Mango Boba",
+                element: "Mango milk tea with golden pearls — sweet heat with a fiery finish.",
+                price: money.format(3.99),
+                category: "Dinner",
+            },
+
+            {
+                id: 14,
+                name: "Earth Kingdom Matcha Boba",
+                element: "Rich matcha with brown sugar pearls — grounded, creamy, and strong.",
+                price: money.format(5.99),
+                category: "Dinner",
+            }];
+
+        // Filter function for MENU_ITEMs categories
+        function filterMenuCategory(category) {
+
+            // Clear "temporary" table.
+            menuTable.innerHTML = "";
+
+            // Create variable called filteredItems.
+            let filteredItems = category === "All"
+                ? MENU_ITEMS
+                : MENU_ITEMS.filter(item => item.category === category)
+
+            // Step 2: Rebuild the "temporary" table.
+            filteredItems.forEach(item => {
+                addRow(item.name, item.element, item.price, item.category)
+            })
+        }
+
+        filterMenuCategory("All");
+
+        // Add item and quantity to cart.
+
+        function addToCart(item, quantity) {
+
+            const cart = JSON.parse(localStorage.getItem("cart")) || []
+
+            // Check if item already exists in cart
+            let existingItem = cart.find(i => i.name === item.name)
+
+            if (existingItem) {
+                existingItem.quantity = Number(existingItem.quantity) + Number(quantity);
+            } else {
+                const newItem = {...item, quantity: Number(quantity)}
+                cart.push(newItem);
+            }
+
+            // Save items in cart to local storage.
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Print a statement indicating which items have been added and of what quantity to cart.
+            console.log(`Added ${quantity} of ${item.name} to cart`)
+
+            if (Number(quantity) <= 0) {
+                alert("Please select at least 1 item to add to cart.");
+                return;
+            }
+        }
+    }
+
+
+// CART PAGE
+    if (document.title === "cart") {
+
+        let cartTable = document.querySelector("#cart-tbody")
+        const cart = JSON.parse(localStorage.getItem("cart")) || []
+
+        function addCartRow(name, quantity, price) {
+            let row = document.createElement("tr")
+
+            let tdName = document.createElement("td")
+            let tdQuantity = document.createElement("td")
+            let tdPrice = document.createElement("td")
+            let tdLineTotal = document.createElement("td")
+
+            tdName.textContent = name
+            tdQuantity.textContent = quantity
+            tdPrice.textContent = price
+            const lineTotal = quantity * price
+            tdLineTotal.textContent = money.format(lineTotal)
+
+
+            const money = new Intl.NumberFormat("en-US", {
+                style: "currency", currency: "USD"
+            })
+
+            row.appendChild(tdName)
+            row.appendChild(tdQuantity)
+            row.appendChild(tdPrice)
+            row.appendChild(tdLineTotal)
+
+            cartTable.appendChild(row)
+        }
+
+        cart.forEach(item => {
+            addCartRow(item.name, item.quantity, item.price)
         })
     }
-})
 
-// Event Listener for Menu
-// Query dropdown-item in HTML and store it as a variable called dropdownItems.
-const dropdownItems = document.querySelectorAll(".dropdown-item")
+// RESERVATION PAGE
 
-// Loop through dropdownItems using for-each loop. Whenever the user clicks an item from dropdownItems perform 3 events - 1) preventDefault, 2) retrieve a class value ("data-category") and store it as variable called selectedCategory, and 3) perform a function called filterMenuCategory.
-dropdownItems.forEach(item => {
-    item.addEventListener("click", function (event) {
+    if (document.title === "reservations") {
 
-        event.preventDefault();
+        const form = document.forms["customerReservation"];
 
-        const selectedCategory = this.getAttribute("data-category")
+        document.getElementById("customerReservation").addEventListener("submit", function (event) {
 
-        filterMenuCategory(selectedCategory)
-    })
-})
+            event.preventDefault();
 
-// Select table body from HTML.
-let menuTable = document.querySelector("tbody")
+            validateForm();
+        })
 
-// Use a function called addRow. Pass the following parameters into the function: name, element, price, and category. Then create a new HTML element that represents the table row.
-function addRow(name, element, price, category, quantity) {
-    let row = document.createElement("tr");
+        const alertPlaceholder = document.getElementById('alertPlaceholder')
 
-// Create the table data (cells) that will fall under name, element, price, and category. In other words, create spots for those sections in the table. At this point, no words have been added to the table yet.
-    let tdName = document.createElement("td")
-    let tdElement = document.createElement("td")
-    let tdPrice = document.createElement("td")
-    let tdCategory = document.createElement("td")
+        function appendAlert(message, type) {
+            const wrapper = document.createElement('div')
 
-// Insert text into the corresponding sections - name, element, price, and category.
-    tdName.textContent = name
-    tdElement.textContent = element
-    tdPrice.textContent = price
-    tdCategory.textContent = category
+            wrapper.innerHTML = [
+                `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+                `   <div>${message}</div>`,
+                '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                '</div>'
+            ].join('')
 
-// Add the text to the row that was created.
-    row.appendChild(tdName)
-    row.appendChild(tdElement)
-    row.appendChild(tdPrice)
-    row.appendChild(tdCategory)
+            alertPlaceholder.append(wrapper)
+        }
 
-// Add the row to the table.
-    menuTable.appendChild(row);
-}
+        function validateForm() {
+            let errorCount = 0
+            let first_name = document.forms["customerReservation"]["first_name"].value;
+            if (!first_name || first_name.length > 20) {
+                appendAlert("First name is required. Maximum characters: 20.", "danger");
+                errorCount++
+            }
 
-// Display prices in Intl.NumberFormat().
-const money = new Intl.NumberFormat("en-US", {
-    style: "currency", currency: "USD"
-});
+            let last_name = document.forms["customerReservation"]["last_name"].value;
+            if (!last_name) {
+                appendAlert("Last name is required. Maximum characters: 20.", "danger");
+                errorCount++;
+            }
 
-// Create array of all menu items.
-const MENU_ITEMS = [
-    {
-    id: 1,
-    name: "Fire Nation Gyoza",
-    element:"Spicy, bold, and full of flavor—perfect nod to the Fire Nation’s fiery cuisine.",
-    price: money.format(5.99),
-    category: "Appetizer"
-    },
+            let email = document.forms["customerReservation"]["email"].value;
+            if (!email || !email.includes("@")) {
+                appendAlert("Enter a valid email.", "danger");
+                errorCount++;
+            }
 
-    {
-    id: 2,
-    name: "Air Nomad Edamame Pods",
-    element:"Light, healthy, and simple—evoking the airy, peaceful lifestyle of the Air Nomads.",
-    price: money.format(3.99),
-    category: "Appetizer"
-    },
+            let party_size = Number(document.forms["customerReservation"]["party_size"].value);
+            if (!party_size || party_size < 1 || party_size > 8) {
+                appendAlert("Party size is required. Select a number between 1 - 8.", "danger");
+                errorCount++;
+            }
 
-    {
-    id: 3,
-    name: "Avatar's Tonkotsu",
-    element:"Pork Bone Broth, Chashu Pork, Ajitama Egg, Kikurage, Scallions, Sesame Seeds.",
-    price: money.format(16.99),
-    category: "Dinner"
-    },
+            let date = document.forms["customerReservation"]["date"].value;
+            if (!date) {
+                appendAlert("Date is required.", "danger");
+                errorCount++;
+            }
 
-    {
-    id: 4,
-    name: "Zuko's Fiery Shoyu",
-    element:"Pork Bone Broth, Soy Sauce Blend, Chashu Pork, Ajitama Egg, Menma, Scallions, Nori, Pepper.",
-    price: money.format(19.99),
-    category: "Dinner"
-    },
+            let time = document.forms["customerReservation"]["time"].value;
+            if (!time) {
+                appendAlert("Time is required.", "danger");
+                errorCount++;
+            }
 
-    {
-    id: 5,
-    name: "Toph's Earthy Miso",
-    element:"Pork Bone Broth, Miso Blend, Goma Pork, Ajitama Egg, Scallions, Napa Cabbage, Bean Sprout, Corn, Sesame Seeds.",
-    price: money.format(16.99),
-    category: "Lunch"
-    },
+            let seatPrefInput = document.querySelector('input[name="seat_pref"]:checked')
+            let seat_pref = seatPrefInput ? seatPrefInput.value : null;
+            if (!seat_pref) {
+                appendAlert("Seating preference is required. Select indoors, outdoors, or bar.", "danger");
+                errorCount++;
+            }
 
-    {
-    id: 6,
-    name: "Water Tribe Vegan",
-    element:"Almond Milk Tonkotsu, Shroom Abura, Spinach, Assuage Tofu, Scallions, Corn, Kikurage.",
-    price: money.format(12.99),
-    category: "Lunch"
-    },
+            if (errorCount <= 0) {
+                appendAlert("Reservation confirmed!", "success")
 
-    {
-    id: 7,
-    name: "Water",
-    element:"Pure water restores balance, refreshing body and spirit.",
-    price: money.format(1.00),
-    category: "Lunch"
-    },
-
-    {
-    id: 8,
-    name: "Jasmine Air Temple Tea",
-    element:"Light, floral, and calming - brewed for peaceful balance.",
-    price: money.format(3.99),
-    category: "Lunch"
-    },
-
-    {
-    id: 9,
-    name: "White Lotus Brew",
-    element:"A smooth, wise blend steeped to quiet the mind and strengthen the spirit.",
-    price: money.format(4.99),
-    category: "Lunch"
-    },
-
-    {
-    id: 10,
-    name: "Fire Nation Fizz",
-    element:"Bright, bold, and sparkling with unstoppable energy.",
-    price: money.format(2.99),
-    category: "Lunch"
-    },
-
-    {
-    id: 11,
-    name: "Lightning Bolt Lemonade",
-    element:"Sweet with a sharp citrus kick — fast, powerful, refreshing.",
-    price: money.format(2.99),
-    category: "Dinner"
-    },
-
-    {
-    id: 12,
-    name: "Water Tribe Milk Tea",
-    element:"Classic milk tea with tapioca pearls — smooth, flowing, and comforting.",
-    price: money.format(4.99),
-    category: "Dinner"
-    },
-
-    {
-    id: 13,
-    name: "Ember Mango Boba",
-    element:"Mango milk tea with golden pearls — sweet heat with a fiery finish.",
-    price: money.format(3.99),
-    category: "Dinner"
-    },
-
-    {
-    id: 14,
-    name: "Earth Kingdom Matcha Boba",
-    element:"Rich matcha with brown sugar pearls — grounded, creamy, and strong.",
-    price: money.format(5.99),
-    category: "Dinner"
-    }];
-
-// Filter function for MENU_ITEMs categories
-function filterMenuCategory(category) {
-
-    //Step 1A: Clear "temporary" table.
-    menuTable.innerHTML = "";
-
-    //Step 1B: Create variable called filteredItems.
-    let filteredItems;
-
-    // Step 1C: Create if...else statement that filters for the condition (e.g. category === "All") and retrieves all the data. Otherwise, filter the dropdown items that correspond to the selected category.
-    if (category === "All") {
-        filteredItems = MENU_ITEMS;
-    }else {
-        filteredItems = MENU_ITEMS.filter(item => item.category === category)
-    }
-
-    // Step 2: Rebuild the "temporary" table.
-    filteredItems.forEach(item => {
-        addRow (item.name, item.element, item.price, item.category)
-    })
-}
-
-filterMenuCategory("All")
-
-
-// RESERVATIONS PAGE
-
-const alertPlaceholder = document.getElementById('alertPlaceholder')
-
-function appendAlert (message, type)  {
-    const wrapper = document.createElement('div')
-    wrapper.innerHTML = [
-        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-        `   <div>${message}</div>`,
-        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-        '</div>'
-    ].join('')
-
-    alertPlaceholder.append(wrapper)
-}
-
-function validateForm() {
- let errorCount = 0
-    let first_name = document.forms["customerReservation"]["first_name"].value;
-    if (!first_name || first_name.length > 20) {
-        appendAlert("First name is required. Maximum characters: 20.", "danger");
-        errorCount++
-    }
-
-    let last_name = document.forms["customerReservation"]["last_name"].value;
-    if (!last_name) {
-        appendAlert("Last name is required. Maximum characters: 20.", "danger");
-    }
-
-    let email = document.forms["customerReservation"]["email"].value;
-    if (!email || !email.includes("@")) {
-        appendAlert("Enter a valid email.", "danger");
-    }
-
-    let party_size = Number(document.forms["customerReservation"]["party_size"].value);
-    if (!party_size || party_size < 1 || party_size > 8) {
-        appendAlert("Party size is required. Select a number between 1 - 8.", "danger");
-    }
-
-    let date = document.forms["customerReservation"]["date"].value;
-    if (!date) {
-        appendAlert("Date is required.", "danger");
-    }
-
-    let time = document.forms["customerReservation"]["time"].value;
-    if (!time) {
-        appendAlert("Time is required.", "danger");
-    }
-
-    let seat_pref = document.querySelector('input[name="seat_pref"]:checked').value;
-    if (!seat_pref) {
-        appendAlert("Seating preference is required. Select indoors, outdoors, or bar.", "danger");
-    }
-
-    if(errorCount <= 0){
-        appendAlert("Reservation confirmed!", "success")
-
-        document.getElementById("results").innerHTML = `
+                document.getElementById("results").innerHTML = `
         Reservation Confirmed: <br>
         Name: ${first_name} ${last_name} <br>
         Email: ${email} <br>
@@ -278,11 +378,11 @@ function validateForm() {
         Date: ${date} <br>
         Time: ${time} <br>
         Seating Preference: ${seat_pref} <br>
-            
-`;
+        `;
+            }
+        }
     }
+})
 
-
-}
 
 

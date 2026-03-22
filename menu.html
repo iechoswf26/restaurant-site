@@ -50,6 +50,10 @@
                     <a class="nav-link active" href="reservations.html">Reservations</a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link active" href="cart.html">Cart</a>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -75,7 +79,7 @@
 
     <div class="row">
         <div class="col">
-            <table class="table table-borderless table table-hover">
+            <table class="table table-borderless table-hover">
                 <thead class="menu-headers">
                     <tr>
                         <th>Name</th>
@@ -93,9 +97,11 @@
                                 </ul>
                             </div>
                         </th>
+                        <th class="quantity">Quantity</th>
                     </tr>
                 </thead>
-                <tbody class="food-data"></tbody>
+                <tbody id="menu-table"></tbody>
+
             </table>
         </div>
     </div>
