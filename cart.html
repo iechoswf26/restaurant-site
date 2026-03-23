@@ -101,8 +101,8 @@
 
     </div>
     <div class="d-flex justify-content-end mt-3 gap-2">
-        <button id="submit-order" class="btn btn-success">Submit Order</button>
-        <button id="cancel-order" class="btn btn-danger">Cancel Order</button>
+        <button id="submit-order" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#submitOrderModal">Submit Order</button>
+        <button id="cancel-order" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelOrderModal">Cancel Order</button>
 
         <div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -116,7 +116,24 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Keep Order</button>
-                        <button type="button" class="btn btn-primary">Yes, Cancel Order</button>
+                        <button id="confirm-cancel" type="button" class="btn btn-primary">Yes, Cancel Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="submitOrderModal" tabindex="-1" aria-labelledby="submitOrderModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="submit-order" id="submitOrderModalLabel">Submit Order</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Thank you!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

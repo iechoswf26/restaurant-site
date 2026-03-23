@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             tdName.textContent = name
             tdElement.textContent = element
-            tdPrice.textContent = price
+            tdPrice.textContent = money.format(price) // Changes only the price in Menu page.
             tdCategory.textContent = category
 
             // Insert cart info under tdCartButton.
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 1,
                 name: "Fire Nation Gyoza",
                 element: "Spicy, bold, and full of flavor—perfect nod to the Fire Nation’s fiery cuisine.",
-                price: money.format(5.99),
+                price: 5.99,
                 category: "Appetizer",
             },
 
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 2,
                 name: "Air Nomad Edamame Pods",
                 element: "Light, healthy, and simple—evoking the airy, peaceful lifestyle of the Air Nomads.",
-                price: money.format(3.99),
+                price: 3.99,
                 category: "Appetizer",
             },
 
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 3,
                 name: "Avatar's Tonkotsu",
                 element: "Pork Bone Broth, Chashu Pork, Ajitama Egg, Kikurage, Scallions, Sesame Seeds.",
-                price: money.format(16.99),
+                price: 16.99,
                 category: "Dinner",
             },
 
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 4,
                 name: "Zuko's Fiery Shoyu",
                 element: "Pork Bone Broth, Soy Sauce Blend, Chashu Pork, Ajitama Egg, Menma, Scallions, Nori, Pepper.",
-                price: money.format(19.99),
+                price: 19.99,
                 category: "Dinner",
             },
 
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 5,
                 name: "Toph's Earthy Miso",
                 element: "Pork Bone Broth, Miso Blend, Goma Pork, Ajitama Egg, Scallions, Napa Cabbage, Bean Sprout, Corn, Sesame Seeds.",
-                price: money.format(16.99),
+                price: 16.99,
                 category: "Lunch",
             },
 
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 6,
                 name: "Water Tribe Vegan",
                 element: "Almond Milk Tonkotsu, Shroom Abura, Spinach, Assuage Tofu, Scallions, Corn, Kikurage.",
-                price: money.format(12.99),
+                price: 12.99,
                 category: "Lunch",
             },
 
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 7,
                 name: "Water",
                 element: "Pure water restores balance, refreshing body and spirit.",
-                price: money.format(1.00),
+                price: 1.00,
                 category: "Lunch",
             },
 
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 8,
                 name: "Jasmine Air Temple Tea",
                 element: "Light, floral, and calming - brewed for peaceful balance.",
-                price: money.format(3.99),
+                price: 3.99,
                 category: "Lunch",
             },
 
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 9,
                 name: "White Lotus Brew",
                 element: "A smooth, wise blend steeped to quiet the mind and strengthen the spirit.",
-                price: money.format(4.99),
+                price: 4.99,
                 category: "Lunch",
             },
 
@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 10,
                 name: "Fire Nation Fizz",
                 element: "Bright, bold, and sparkling with unstoppable energy.",
-                price: money.format(2.99),
+                price: 2.99,
                 category: "Lunch",
             },
 
@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 11,
                 name: "Lightning Bolt Lemonade",
                 element: "Sweet with a sharp citrus kick — fast, powerful, refreshing.",
-                price: money.format(2.99),
+                price: 2.99,
                 category: "Dinner",
             },
 
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 12,
                 name: "Water Tribe Milk Tea",
                 element: "Classic milk tea with tapioca pearls — smooth, flowing, and comforting.",
-                price: money.format(4.99),
+                price: 4.99,
                 category: "Dinner",
             },
 
@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 13,
                 name: "Ember Mango Boba",
                 element: "Mango milk tea with golden pearls — sweet heat with a fiery finish.",
-                price: money.format(3.99),
+                price: 3.99,
                 category: "Dinner",
             },
 
@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 id: 14,
                 name: "Earth Kingdom Matcha Boba",
                 element: "Rich matcha with brown sugar pearls — grounded, creamy, and strong.",
-                price: money.format(5.99),
+                price: 5.99,
                 category: "Dinner",
             }];
 
@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function() {
             style: "currency", currency: "USD"
         })
 
-        function addCartRow(item, quantity) {
+        function addCartRow(name, quantity, price) {
             let row = document.createElement("tr")
 
             let tdName = document.createElement("td")
@@ -274,14 +274,14 @@ document.addEventListener("DOMContentLoaded", function() {
             let tdPrice = document.createElement("td")
             let tdLineTotal = document.createElement("td")
 
-            tdName.textContent = item.name
+            tdName.textContent = name
             tdQuantity.textContent = quantity
 
             // Convert price string to number.
-            tdPrice.textContent = price
+            tdPrice.textContent = money.format(price)
 
             // Line total = price * quantity
-            tdLineTotal.textContent = money.format(item.price * quantity)
+            tdLineTotal.textContent = money.format(price * quantity)
 
             row.appendChild(tdName)
             row.appendChild(tdQuantity)
@@ -293,7 +293,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let subtotal = 0;
         cart.forEach(cartItem => {
-            addCartRow(cartItem.name, cartItem.quantity, cartItem.price)
+            addCartRow(cartItem.item.name, cartItem.quantity, cartItem.item.price)
 
             //Convert price string to number (removes $ sign)
             subtotal += cartItem.item.price * cartItem.quantity
@@ -313,9 +313,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const cancelOrderBtn = document.getElementById("cancel-order");
         const confirmCancelBtn = document.getElementById("confirm-cancel");
 
-        // Bootstrap modal
-        const cancelModal = new bootstrap.Modal(document.getElementById("cancelOrderModal"));
-
         // Show modal on clicking Cancel Order
         cancelOrderBtn.addEventListener("click", () => {
             cancelModal.show();
@@ -326,6 +323,19 @@ document.addEventListener("DOMContentLoaded", function() {
             localStorage.removeItem("cart");
             location.reload();
             cancelModal.hide();
+        });
+
+        // Close modal after success cart order.
+        const submitModal = document.getElementById('submitOrderModal');
+
+        submitModal.addEventListener('hidden.bs.modal', function (event) {
+            // Code to execute after the modal is fully hidden
+            console.log('The modal is completely hidden.');
+            // Example: clear a form
+            // myForm.reset();
+
+            localStorage.removeItem("cart");
+            window.location.href = 'menu.html'
         });
 
     }
