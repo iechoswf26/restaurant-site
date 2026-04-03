@@ -32,7 +32,6 @@ export function SiteNavbar(){
                 <Container className="mt-4">
                     <Routes>
                         <Route path="/" element={<HomePage />}/>
-                        <Route path="/home" element={<HomePage />}/>
                         <Route path="/menu" element={<MenuPage />}/>
                         <Route path="/reservations" element={<ReservationsPage />}/>
                         <Route path="/cart" element={<CartPage />}/>
