@@ -1,4 +1,4 @@
-const menuItems = [
+export const menuItems = [
     {
         id: 1,
         name: "Fire Nation Gyoza",
@@ -52,7 +52,7 @@ const menuItems = [
         name: "Water",
         element: "Pure water restores balance, refreshing body and spirit.",
         price: 1.00,
-        category: "Lunch",
+        category: "Drinks",
     },
 
     {
@@ -60,7 +60,7 @@ const menuItems = [
         name: "Jasmine Air Temple Tea",
         element: "Light, floral, and calming - brewed for peaceful balance.",
         price: 3.99,
-        category: "Lunch",
+        category: "Drinks",
     },
 
     {
@@ -68,7 +68,7 @@ const menuItems = [
         name: "White Lotus Brew",
         element: "A smooth, wise blend steeped to quiet the mind and strengthen the spirit.",
         price: 4.99,
-        category: "Lunch",
+        category: "Drinks",
     },
 
     {
@@ -76,7 +76,7 @@ const menuItems = [
         name: "Fire Nation Fizz",
         element: "Bright, bold, and sparkling with unstoppable energy.",
         price: 2.99,
-        category: "Lunch",
+        category: "Drinks",
     },
 
     {
@@ -84,7 +84,7 @@ const menuItems = [
         name: "Lightning Bolt Lemonade",
         element: "Sweet with a sharp citrus kick — fast, powerful, refreshing.",
         price: 2.99,
-        category: "Dinner",
+        category: "Drinks",
     },
 
     {
@@ -92,7 +92,7 @@ const menuItems = [
         name: "Water Tribe Milk Tea",
         element: "Classic milk tea with tapioca pearls — smooth, flowing, and comforting.",
         price: 4.99,
-        category: "Dinner",
+        category: "Drinks",
     },
 
     {
@@ -100,7 +100,7 @@ const menuItems = [
         name: "Ember Mango Boba",
         element: "Mango milk tea with golden pearls — sweet heat with a fiery finish.",
         price: 3.99,
-        category: "Dinner",
+        category: "Drinks",
     },
 
     {
@@ -108,5 +108,5 @@ const menuItems = [
         name: "Earth Kingdom Matcha Boba",
         element: "Rich matcha with brown sugar pearls — grounded, creamy, and strong.",
         price: 5.99,
-        category: "Dinner",
+        category: "Drinks",
     }];
