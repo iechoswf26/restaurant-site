@@ -9,35 +9,33 @@ import {Container, Nav, Navbar} from 'react-bootstrap'
 export function SiteNavbar(){
     return(
         <Router>
-            <div className="App">
-                <Navbar expand="lg" className="bg-body-tertiary">
-                    <Container>
-                        <Navbar.Brand href="/home">Four Elements Udon</Navbar.Brand>
+            <Navbar expand="lg" className="bg-body-tertiary">
+                <Container>
+                    <Navbar.Brand href="/home">Four Elements Udon</Navbar.Brand>
 
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="me-auto">
-                                <Nav.Link href="/home">Home</Nav.Link>
-                                <Nav.Link href="/menu">Menu</Nav.Link>
-                                <Nav.Link href="/reservations">Reservations</Nav.Link>
-                                <Nav.Link href="/cart">Cart</Nav.Link>
-                            </Nav>
-                        </Navbar.Collapse>
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link href="/">Home</Nav.Link>
+                            <Nav.Link href="/menu">Menu</Nav.Link>
+                            <Nav.Link href="/reservations">Reservations</Nav.Link>
+                            <Nav.Link href="/cart">Cart</Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
 
-                    </Container>
-
-                </Navbar>
-
-                <Container className="mt-4">
-                    <Routes>
-                        <Route path="/" element={<HomePage />}/>
-                        <Route path="/menu" element={<MenuPage />}/>
-                        <Route path="/reservations" element={<ReservationsPage />}/>
-                        <Route path="/cart" element={<CartPage />}/>
-                    </Routes>
                 </Container>
-            </div>
+
+            </Navbar>
+
+            <Container fluid className="mt-4">
+                <Routes>
+                    <Route path="/" element={<HomePage />}/>
+                    <Route path="/menu" element={<MenuPage />}/>
+                    <Route path="/reservations" element={<ReservationsPage />}/>
+                    <Route path="/cart" element={<CartPage />}/>
+                </Routes>
+            </Container>
         </Router>
 
     )

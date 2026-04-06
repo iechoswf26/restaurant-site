@@ -37,7 +37,7 @@ const MenuItemCard = () => {
 
             {filteredItems.map(({id, name, element, price, category}) => {
                 return (
-                    <Card key={id} style={{width: '18rem'}}>
+                    <Card key={id}>
                         <Card.Body>
                             <Card.Title>{name}</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">{category}</Card.Subtitle>
@@ -56,7 +56,6 @@ const MenuItemCard = () => {
 
                                 <Button>Add to Cart</Button>
                             </ButtonGroup>
-
                         </Card.Footer>
                     </Card>
                 )
@@ -67,18 +66,3 @@ const MenuItemCard = () => {
 }
 
 export default MenuItemCard;
-
-
-// <Dropdown>
-//     <Dropdown.Toggle variant="success" id="dropdown-basic">
-//         Quantity
-//     </Dropdown.Toggle>
-//
-//     <Dropdown.Menu>
-//         <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-//         <Dropdown.Item href="#/action-2">2</Dropdown.Item>
-//         <Dropdown.Item href="#/action-3">3</Dropdown.Item>
-//         <Dropdown.Item href="#/action-4">4</Dropdown.Item>
-//         <Dropdown.Item href="#/action-5">5</Dropdown.Item>
-//     </Dropdown.Menu>
-// </Dropdown>
