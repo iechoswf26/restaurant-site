@@ -8,11 +8,19 @@ import {ButtonGroup} from "react-bootstrap";
 
 const MenuItemCard = () => {
 
+    // Filter menu using useState
     const [filter, setFilter] = useState('All')
 
     const filteredItems = filter === 'All'
         ?  menuItems
         : menuItems.filter(item => item.category === filter)
+
+    // useState for Quantity
+    const [quantity, setQuantity] = useState(0)
+
+    const handleClick = () => {
+        console.log("You clicked the button!!!!!!!")
+    }
 
     return (
         <>
@@ -31,10 +39,6 @@ const MenuItemCard = () => {
                 </Dropdown.Menu>
             </Dropdown>
 
-            <div>
-
-            </div>
-
             {filteredItems.map(({id, name, element, price, category}) => {
                 return (
                     <Card key={id}>
@@ -46,7 +50,7 @@ const MenuItemCard = () => {
                         <Card.Footer>
                             ${price}
                             <ButtonGroup>
-                                <DropdownButton as={ButtonGroup} title="Quantity" id="bg-nested-dropdown">
+                                <DropdownButton as={ButtonGroup} onClick ={handleClick} title="Quantity" id="bg-nested-dropdown">
                                     <Dropdown.Item eventKey="1">1</Dropdown.Item>
                                     <Dropdown.Item eventKey="2">2</Dropdown.Item>
                                     <Dropdown.Item eventKey="3">3</Dropdown.Item>
