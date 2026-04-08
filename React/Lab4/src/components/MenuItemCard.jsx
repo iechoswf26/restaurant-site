@@ -15,12 +15,6 @@ const MenuItemCard = () => {
         ?  menuItems
         : menuItems.filter(item => item.category === filter)
 
-    // useState for Quantity
-    const [quantity, setQuantity] = useState(0)
-
-    const handleClick = () => {
-        console.log("You clicked the button!!!!!!!")
-    }
 
     return (
         <>
