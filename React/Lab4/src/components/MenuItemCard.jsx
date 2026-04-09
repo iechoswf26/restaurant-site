@@ -1,10 +1,10 @@
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
+import {useState} from 'react';
+import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import React, {useState} from 'react';
 import {menuItems} from '../data/menuData.js'
-import {ButtonGroup} from "react-bootstrap";
+import {useContext} from "react";
 
 const MenuItemCard = () => {
 
@@ -15,9 +15,21 @@ const MenuItemCard = () => {
         ?  menuItems
         : menuItems.filter(item => item.category === filter)
 
+    // Establish state for Quantity.
+    const [quantity, setQuantity] = useState(0)
+
+    const handleChange = (e) => {
+        console.log("You clicked the quantity button!")
+        setQuantity(e.target.quantity)
+    }
+
+    const cartContext = useContext (CartContext)
+
+
 
     return (
         <>
+            {/*Dropdown Button for Menu Categories*/}
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                     {filter}
@@ -43,17 +55,23 @@ const MenuItemCard = () => {
                         </Card.Body>
                         <Card.Footer>
                             ${price}
-                            <ButtonGroup>
-                                <DropdownButton as={ButtonGroup} onClick ={handleClick} title="Quantity" id="bg-nested-dropdown">
-                                    <Dropdown.Item eventKey="1">1</Dropdown.Item>
-                                    <Dropdown.Item eventKey="2">2</Dropdown.Item>
-                                    <Dropdown.Item eventKey="3">3</Dropdown.Item>
-                                    <Dropdown.Item eventKey="4">4</Dropdown.Item>
-                                    <Dropdown.Item eventKey="5">5</Dropdown.Item>
-                                </DropdownButton>
 
-                                <Button>Add to Cart</Button>
-                            </ButtonGroup>
+                            {/*Quantity Button*/}
+                            <Form.Select
+                                value={quantity}
+                                onChange={handleChange}
+                                aria-label="Default select example"
+                            >
+                                <option>Quantity</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </Form.Select>
+
+                            <Button variant="primary">{cartContext}</Button>
+
                         </Card.Footer>
                     </Card>
                 )
