@@ -1,58 +1,102 @@
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 const ReservationsPage = () => {
-    return (
+
+    return(
         <div>
             <Form>
                 <Form.Group className="mb-3" controlId="formName">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter your name" />
-                    <Form.Text className="text-muted">
-                        Max 20 characters.
-                    </Form.Text>
+                    <Form.Control
+                        type="text"
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formEmail">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email@.com" />
+                    <Form.Control
+                        type="email"
+                        placeholder="name@example.com"
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formPartySize">
                     <Form.Label>Party Size</Form.Label>
-                    <Form.Control type="number" placeholder="Party Size" />
+                    <Form.Control
+                        type="number"
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formDate">
                     <Form.Label>Date</Form.Label>
-                    <Form.Control type="date" placeholder="MM-DD-YYYY" />
+                    <Form.Control
+                        type="date"
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formTime">
                     <Form.Label>Time</Form.Label>
-                    <Form.Control type="time" placeholder="HH:MM" />
+                    <Form.Control
+                        type="time"
+                    />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formSeatingPreference">
-                    <Form.Label>Seating Preference</Form.Label>
-                    <Form.Check type="radio" label="Booth" />
-                    <Form.Check type="radio" label="Bar" />
-                    <Form.Check type="radio" label="Patio" />
-                </Form.Group>
+                {['radio'].map((type) => (
+                    <div key={`inline-${type}`} className="mb-3">
+                        <Form.Label column={"md"}>Seating Preference</Form.Label>
+                        <br/>
+                        <Form.Check
+                            inline
+                            label="Bar"
+                            name="group1"
+                            type={type}
+                            id={`inline-${type}-1`}
+                        />
+                        <Form.Check
+                            inline
+                            label="Booth"
+                            name="group1"
+                            type={type}
+                            id={`inline-${type}-2`}
+                        />
+                        <Form.Check
+                            inline
+                            label="Patio"
+                            name="group1"
+                            type={type}
+                            id={`inline-${type}-3`}
+                        />
+                    </div>
+                ))}
 
                 <Form.Group className="mb-3" controlId="formDietaryNotes">
-                    <Form.Label>Dietary Notes</Form.Label>
-                    <Form.Check type="text" placeholder="optional" />
-                    <Form.Text className="text-muted">
-                        Max 30 characters.
-                    </Form.Text>
+                    <Form.Label column={"md"}>Dietary Notes</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        rows={3}
+                    />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formNewsletter">
-                    <Form.Label>Newsletter</Form.Label>
-                    <Form.Check type="checkbox" label="Yes!" />
-                    <Form.Check type="checkbox" label="No, thanks." />
-                </Form.Group>
+                {['radio'].map((type) => (
+                    <div key={`inline-${type}`} className="mb-3">
+                        <Form.Label column={"md"}>Join our Newsletter!</Form.Label>
+                        <br/>
+                        <Form.Check
+                            inline
+                            label="Sign me up!"
+                            name="group1"
+                            type={type}
+                            id={`inline-${type}-1`}
+                        />
+                        <Form.Check
+                            inline
+                            label="No, thanks."
+                            name="group1"
+                            type={type}
+                            id={`inline-${type}-2`}
+                        />
+                    </div>
+                ))}
 
             </Form>
         </div>
@@ -63,13 +107,3 @@ const ReservationsPage = () => {
 
 export default ReservationsPage;
 
-/* Need the following:
-Name (required, max 20 characters)
-Email (required, valid email)
-Party Size (required, 1–8)
-Date (required)
-Time (required)
-Seating Preference (required radio group, 3+ options)
-Dietary Notes (optional, max 30)
-Newsletter Opt-In (optional checkbox)
- */
