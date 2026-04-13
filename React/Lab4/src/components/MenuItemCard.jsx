@@ -4,7 +4,6 @@ import {useState} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {menuItems} from '../data/menuData.js'
-import {useContext} from "react";
 
 const MenuItemCard = () => {
 
@@ -14,16 +13,6 @@ const MenuItemCard = () => {
     const filteredItems = filter === 'All'
         ?  menuItems
         : menuItems.filter(item => item.category === filter)
-
-    // Establish state for Quantity.
-    const [quantity, setQuantity] = useState(0)
-
-    const handleChange = (e) => {
-        console.log("You clicked the quantity button!")
-        setQuantity(e.target.quantity)
-    }
-
-    const cartContext = useContext (CartContext)
 
 
 
@@ -56,12 +45,7 @@ const MenuItemCard = () => {
                         <Card.Footer>
                             ${price}
 
-                            {/*Quantity Button*/}
-                            <Form.Select
-                                value={quantity}
-                                onChange={handleChange}
-                                aria-label="Default select example"
-                            >
+                            <Form.Select>
                                 <option>Quantity</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -69,9 +53,6 @@ const MenuItemCard = () => {
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </Form.Select>
-
-                            <Button variant="primary">{cartContext}</Button>
-
                         </Card.Footer>
                     </Card>
                 )
