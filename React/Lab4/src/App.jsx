@@ -5,6 +5,7 @@ import MenuPage from "./pages/MenuPage.jsx";
 import ReservationsPage from "./pages/ReservationsPage.jsx";
 import CartPage from "./pages/CartPage.jsx";
 
+
 const App = () => {
     return (
         <Router>

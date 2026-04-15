@@ -1,6 +1,19 @@
+import { useCart } from '../context/CartContext.jsx';
+import CartSummary from "../components/CartSummary.jsx";
+
 const CartPage = () => {
+    const {cart} = useCart();
+
+    const items = cart.map((item) => {
+        return <li key={item.id}>{item.name}</li>
+    })
+
     return (
-        <h1>I am the CartPage</h1>
+        <div>
+            {items}
+            <CartSummary cart = {cart}/>
+
+        </div>
 
 
     )
