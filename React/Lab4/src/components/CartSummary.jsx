@@ -11,8 +11,12 @@ const CartSummary = ({cart}) => {
         console.log("Your cart is empty")
     }
 
-    const {getTotalPrice} = useCart();
+    const usd = new Intl.NumberFormat(
+        "en-US",
+        {style: "currency", currency: "USD"}
+    )
 
+    const {getTotalPrice} = useCart();
     const subtotal = getTotalPrice();
     const tax = subtotal * 0.08;
     const total = subtotal + tax;
@@ -33,17 +37,17 @@ const CartSummary = ({cart}) => {
                         <Row key={item.id}>
                             <Col>{item.name}</Col>
                             <Col>{item.quantity}</Col>
-                            <Col>{item.price}</Col>
-                            <Col>${(item.quantity * item.price).toFixed(2)}</Col>
+                            <Col>{usd.format(item.price)}</Col>
+                            <Col>{usd.format(item.quantity * item.price)}</Col>
                         </Row>
                     ))}
                 </Container>
             </Card.Body>
             <Card.Footer className="d-flex justify-content-center">
                 <ul>
-                    <li type="none"><strong>Subtotal: </strong>${subtotal.toFixed(2)}</li>
-                    <li type="none"><strong>Taxes (8%): </strong>{tax.toFixed(2)}</li>
-                    <li type="none"><strong>Total: </strong>${total.toFixed(2)}</li>
+                    <li type="none"><strong>Subtotal: </strong>{usd.format(subtotal)}</li>
+                    <li type="none"><strong>Taxes (8%): </strong>{usd.format(tax)}</li>
+                    <li type="none"><strong>Total: </strong>{usd.format(total)}</li>
                 </ul>
             </Card.Footer>
 
