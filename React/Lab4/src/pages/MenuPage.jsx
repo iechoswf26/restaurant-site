@@ -1,5 +1,4 @@
 import MenuItemCard from "../components/MenuItemCard.jsx";
-import {Card, Button, Form} from 'react-bootstrap';
 import {menuItems} from "../data/menuData.js";
 import {useState} from "react";
 import Dropdown from 'react-bootstrap/Dropdown';

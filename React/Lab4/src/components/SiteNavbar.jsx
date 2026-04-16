@@ -1,7 +1,7 @@
 import {Container, Nav, Navbar} from 'react-bootstrap'
 
 
-export function SiteNavbar(){
+export const SiteNavbar = () => {
     return(
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
@@ -11,7 +11,7 @@ export function SiteNavbar(){
 
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="/home">Home</Nav.Link>
                         <Nav.Link href="/menu">Menu</Nav.Link>
                         <Nav.Link href="/reservations">Reservations</Nav.Link>
                         <Nav.Link href="/cart">Cart</Nav.Link>
