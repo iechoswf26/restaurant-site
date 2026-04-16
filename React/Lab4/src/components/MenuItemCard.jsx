@@ -5,7 +5,7 @@ import { useCart } from '../context/CartContext.jsx';
 
 const MenuItemCard = (item) => {
     const { addToCart } = useCart();
-   const [quantity, setQuantity] = useState("1")
+    const [quantity, setQuantity] = useState("1")
 
     return (
         <div>
