@@ -1,7 +1,7 @@
 import MenuItemCard from "../components/MenuItemCard.jsx";
-import {menuItems} from "../data/menuData.js";
+import menuItems from "../data/menuData.js";
 import {useState} from "react";
-import Dropdown from 'react-bootstrap/Dropdown';
+import {Col, Row, Dropdown} from 'react-bootstrap';
 
 const MenuPage = () => {
 

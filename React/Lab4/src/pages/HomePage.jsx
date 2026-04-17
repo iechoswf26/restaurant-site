@@ -1,5 +1,5 @@
 import Card from 'react-bootstrap/Card';
-import img1 from '../assets/img1.jpg'
+import img1 from '../assets/hero_image.jpg'
 
 const HomePage = () => {
     return (
